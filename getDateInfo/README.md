@@ -1,6 +1,6 @@
-#HW_9
+# HW_9
 
-######Get Date Info
+###### Get Date Info
 
 Instructions
 ```sh
