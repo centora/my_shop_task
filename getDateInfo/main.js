@@ -1,4 +1,4 @@
-var fs = require('file-system');
+const fs = require('file-system');
 
 const dirName = "new-folder";
 const date = new Date();
