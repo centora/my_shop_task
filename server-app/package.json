@@ -1,0 +1,15 @@
+{
+  "name": "server-client-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "node server.js",
+    "stop": "ps -ef | grep \"node\" | awk '{print $2}' | xargs kill -9",
+    "restart": "npm run stop || npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}
