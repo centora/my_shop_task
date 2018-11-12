@@ -10,4 +10,4 @@ Instructions
 ```
 
 *  in console you can see info about image size
-*  in the end of </body> you can see current date.
+*  in the end of ```</body>``` you can see current date.
