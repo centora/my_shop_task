@@ -18,7 +18,8 @@ const server = http.createServer((req, res) => {
       res.end(displayDate);
     });
     return
-  } else if (isJS) {
+  }
+  if (isJS) {
     fs.readFile(fileName, 'utf-8', (err, data) => {
       res.setHeader('Content-Type', 'application/javascript');
       if(err) {
