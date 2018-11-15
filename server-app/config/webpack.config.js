@@ -2,14 +2,11 @@ const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const package = require('../package');
 
-console.log("-------------->>>>>>>> ", path.resolve(__dirname, '..'))
 module.exports = {
   entry: {
-    main: './app.js',
-    libs: ['./libs/index.js', './libs/index2.js']
+    main: './app.js'
   },
   output: {
-    //filename: 'bundle.js'
     filename: 'bundle-[name].js',
     path: path.resolve(__dirname, '../public')
   },

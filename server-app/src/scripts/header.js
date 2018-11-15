@@ -1,13 +1,7 @@
-module.exports = () => {
-  const header =
-    document.createElement('header');
+const builder = require('./elementBuilder');
+const content = '<a href="/">Logo</a>';
 
+module.exports = builder(
+  'header', content, 'header'
+);
 
-  header.className = 'header';
-
-
-  header.innerHTML =
-    '<a href="/">Logo</a>';
-
-  return header;
-};

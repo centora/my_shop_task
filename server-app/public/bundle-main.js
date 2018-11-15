@@ -161,7 +161,18 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var header = __webpack_require__(/*! ./scripts/header */ \"./scripts/header.js\")();\n\nvar footer = __webpack_require__(/*! ./scripts/footer */ \"./scripts/footer.js\")();\n\nvar $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\ndocument.body.appendChild(header);\ndocument.body.appendChild(footer);\n\n//# sourceURL=webpack:///./app.js?");
+eval("var header = __webpack_require__(/*! ./scripts/header */ \"./scripts/header.js\");\n\nvar footer = __webpack_require__(/*! ./scripts/footer */ \"./scripts/footer.js\");\n\nvar main = __webpack_require__(/*! ./scripts/main */ \"./scripts/main.js\");\n\nvar $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nvar body = $('body');\nbody.append(header, main, footer);\n\n//# sourceURL=webpack:///./app.js?");
+
+/***/ }),
+
+/***/ "./scripts/elementBuilder.js":
+/*!***********************************!*\
+  !*** ./scripts/elementBuilder.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var $ = __webpack_require__(/*! jquery */ \"../node_modules/jquery/dist/jquery.js\");\n\nmodule.exports = function () {\n  var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';\n  var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';\n  var className = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'box';\n  var element = $('<div/>', {\n    'class': className,\n    'html': content\n  });\n  return element;\n};\n\n//# sourceURL=webpack:///./scripts/elementBuilder.js?");
 
 /***/ }),
 
@@ -170,9 +181,9 @@ eval("var header = __webpack_require__(/*! ./scripts/header */ \"./scripts/heade
   !*** ./scripts/footer.js ***!
   \***************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = function () {\n  var footer = document.createElement('footer');\n  footer.className = 'footer';\n  footer.innerHTML = '<p>Easycode 2019 (c)</p>';\n  return footer;\n};\n\n//# sourceURL=webpack:///./scripts/footer.js?");
+eval("var builder = __webpack_require__(/*! ./elementBuilder */ \"./scripts/elementBuilder.js\");\n\nvar content = '<p>Easycode 2017 (c)</p>';\nmodule.exports = builder('footer', content, 'footer');\n\n//# sourceURL=webpack:///./scripts/footer.js?");
 
 /***/ }),
 
@@ -181,9 +192,20 @@ eval("module.exports = function () {\n  var footer = document.createElement('foo
   !*** ./scripts/header.js ***!
   \***************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = function () {\n  var header = document.createElement('header');\n  header.className = 'header';\n  header.innerHTML = '<a href=\"/\">Logo</a>';\n  return header;\n};\n\n//# sourceURL=webpack:///./scripts/header.js?");
+eval("var builder = __webpack_require__(/*! ./elementBuilder */ \"./scripts/elementBuilder.js\");\n\nvar content = '<a href=\"/\">Logo</a>';\nmodule.exports = builder('header', content, 'header');\n\n//# sourceURL=webpack:///./scripts/header.js?");
+
+/***/ }),
+
+/***/ "./scripts/main.js":
+/*!*************************!*\
+  !*** ./scripts/main.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var builder = __webpack_require__(/*! ./elementBuilder */ \"./scripts/elementBuilder.js\");\n\nvar date = new Date();\nvar content = \"\\n<h2>Main section title!!!</h2>\\n<p>Current date: \".concat(date.toLocaleDateString(), \"</p>\\n\");\nmodule.exports = builder('main', content, 'main');\n\n//# sourceURL=webpack:///./scripts/main.js?");
 
 /***/ })
 
