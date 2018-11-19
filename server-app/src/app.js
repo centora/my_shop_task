@@ -1,4 +1,4 @@
-require('./css/app.css');
+require('./css/app.scss');
 
 const header = require('./scripts/header/header');
 const footer = require('./scripts/footer/footer');

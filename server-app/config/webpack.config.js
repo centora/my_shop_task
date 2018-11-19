@@ -2,6 +2,22 @@ const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
 const package = require('../package');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const args = process.argv;
+const isFileCSS = args.includes('--styles');
+
+const plugins =[
+  new HtmlPlugin({
+    title: package.name,
+    version: package.version,
+    filename: 'main.html',
+    chunksSortMode: 'none',
+    template: './index.html'
+  })
+];
+
+if (isFileCSS) {
+  plugins.push(new MiniCssExtractPlugin({ filename: 'styles.css' }));
+}
 
 module.exports = {
   entry: {
@@ -18,9 +34,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [ MiniCssExtractPlugin.loader,
-          { loader: 'css-loader' },
+        test: /\.s?css$/,
+        use: [ isFileCSS ? MiniCssExtractPlugin.loader : 'style-loader',
+          {loader: "css-loader"},
+          {loader: "sass-loader"}
         ]
       },
       {
@@ -36,16 +53,7 @@ module.exports = {
     ]
   },
 
-  plugins: [
-    new HtmlPlugin({
-      title: package.name,
-      version: package.version,
-      filename: 'main.html',
-      chunksSortMode: 'none',
-      template: './index.html'
-    }),
-    new MiniCssExtractPlugin({ filename: 'styles.css' })
-  ],
+  plugins,
 
   optimization: {
     splitChunks: {
