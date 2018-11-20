@@ -1,0 +1,3 @@
+@function getPart($num, $percent) {
+  @return $num/100*$percent + '%'
+}
