@@ -16,7 +16,9 @@ const plugins =[
 ];
 
 if (isFileCSS) {
-  plugins.push(new MiniCssExtractPlugin({ filename: 'styles.css' }));
+  plugins.push(new MiniCssExtractPlugin({
+    filename: 'styles-' + Date.now() + '.css'
+  }));
 }
 
 module.exports = {
