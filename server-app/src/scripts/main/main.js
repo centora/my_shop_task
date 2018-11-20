@@ -1,6 +1,10 @@
 import { builder } from '../elementBuilder';
 require('./main.scss');
 
+let itemListHtml = '';
+for ( let i = 1; i <= 10; i++){
+  itemListHtml += `<li class="item-${i}">${i}</li>`;
+}
 
 const content = `<h2>Main Content</h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda beatae, blanditiis consequatur delectus deserunt, eius error facilis minus porro quaerat quisquam repellendus sint tempora tempore velit? Consequuntur quaerat recusandae voluptatibus?</p>

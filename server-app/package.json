@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx webpack --config=config/webpack.config.js --watch",
-    "start:styles": "npx webpack --config=config/webpack.config.js --watch --styles"
+    "start": "npx webpack --config=webpack.config.js --watch",
+    "start:styles": "npx webpack --config=webpack.config.js --watch --styles",
+    "main": "jshint main.js || node main.js",
+    "server": "npx webpack-dev-server --config=webpack.config.js --open"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +23,8 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
     "jquery": "^3.3.1"

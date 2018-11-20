@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlPlugin = require('html-webpack-plugin');
-const package = require('../package');
+const package = require('./package');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const args = process.argv;
 const isFileCSS = args.includes('--styles');
@@ -9,10 +10,11 @@ const plugins =[
   new HtmlPlugin({
     title: package.name,
     version: package.version,
-    filename: 'main.html',
+    filename: 'index.html',
     chunksSortMode: 'none',
     template: './index.html'
-  })
+  }),
+  new webpack.HotModuleReplacementPlugin()
 ];
 
 if (isFileCSS) {
@@ -27,10 +29,10 @@ module.exports = {
   },
   output: {
     filename: 'bundle-[name].js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, 'dist'),
     chunkFilename: 'vendors.js'
   },
-  context: path.resolve(__dirname, '../src'),
+  context: path.resolve(__dirname, 'src'),
   mode: 'development',
 
   module: {
@@ -63,4 +65,10 @@ module.exports = {
     },
   },
 
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    hot: true,
+    port: 3000,
+  }
 };

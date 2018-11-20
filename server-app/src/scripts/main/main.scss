@@ -13,11 +13,12 @@ $colors: lightblue, blue, darkblue, blueviolet, pink, red, purple, orange, yello
   margin: 20px auto;
   border: 3px solid #e07b7b;
   background: rgba(255, 255, 255, 0.57);
+	opacity: 0.5;
   @include triangle(left);
 
   .items-list {
 	li{
-	  background: red;
+	  background: lightsalmon;
 	  margin: 5px;
 	}
 	@for $i from 1 through 10 {
