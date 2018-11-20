@@ -1,6 +1,5 @@
-require('./css/app.scss');
-
 import $ from 'jquery';
+require('./css/app.scss');
 
 import { header } from './scripts/header/header';
 import { footer } from './scripts/footer/footer';

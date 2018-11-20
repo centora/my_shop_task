@@ -1,4 +1,6 @@
 import { builder } from '../elementBuilder';
+require('./main.scss');
+
 
 const content = `<h2>Main Content</h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda beatae, blanditiis consequatur delectus deserunt, eius error facilis minus porro quaerat quisquam repellendus sint tempora tempore velit? Consequuntur quaerat recusandae voluptatibus?</p>
@@ -38,8 +40,6 @@ const content = `<h2>Main Content</h2>
     <li class="item"></li>
   </ul>
 `;
-
-require('./main.scss');
 
 export const main = builder(
   'main', content, 'main'
