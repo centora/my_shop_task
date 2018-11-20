@@ -1,8 +1,9 @@
-$aaa: darkgrey;
+@import "functions";
+
 body {
     margin: 0;
-    background: #e4e1c7;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+  	background: #{getDarken(#edecf1)};
 }
