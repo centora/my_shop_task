@@ -40,8 +40,12 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [ isFileCSS ? MiniCssExtractPlugin.loader : 'style-loader',
-          {loader: "css-loader"},
-          {loader: "sass-loader"}
+          {loader: "css-loader", options: {
+              sourceMap: true
+            }},
+          {loader: "sass-loader", options: {
+              sourceMap: true
+            }}
         ]
       },
       {
@@ -70,5 +74,7 @@ module.exports = {
     publicPath: '/',
     hot: true,
     port: 3000,
-  }
+  },
+
+  devtool: 'inline-source-map'
 };
