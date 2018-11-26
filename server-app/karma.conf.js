@@ -1,6 +1,8 @@
 // Karma configuration
-// Generated on Tue Nov 20 2018 20:42:20 GMT+0200 (Eastern European Standard Time)
+// Generated on Mon Nov 26 2018 12:43:46 GMT+0200 (FLE Standard Time)
+
 const webpack = require('./webpack.test.config');
+
 module.exports = function(config) {
   config.set({
 
@@ -72,10 +74,8 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-webpack',
       'karma-mocha-reporter'
-
     ],
 
-    webpack
-
+    webpack,
   })
 }
