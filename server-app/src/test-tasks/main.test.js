@@ -1,26 +1,59 @@
-import { expect } from 'chai';
+import chai from 'chai';
+const { expect } = chai;
 import sinon from 'sinon';
-import { showMessage, getDay, getAdultUsers, getRandomUsers, Product,  } from './main';
-/*
+import { days, users } from './constants';
+import { showMessage, getDay, getAdultUsers } from './main';
 
-describe('class Product', () => {
 
-  let product;
+describe('showMessage()', () => {
 
-  beforeEach(() => {
-    product = new Product();
+  it('should call showMessage()', () => {
+    const stub = sinon.stub(window, 'alert');
+    showMessage();
+
+    expect(stub.called).to.be.true;
+    stub.restore();
   });
 
-  it('should have default title', () => {
-    expect(product.title).to.equal('Apple');
+  it('should be called with param "test"', () => {
+    const stub = sinon.stub(window, 'alert');
+    showMessage('test');
+
+    expect(stub.getCall(0).args[0]).to.equal('test');
+    stub.restore();
   });
 
-  it('should have default price', () => {
-    expect(product.price).to.equal(10);
+});
+
+describe('getDay()', () => {
+  const currDay = days[new Date().getDay()];
+
+  it('shouldn\'t be undefined for empty arguments', () => {
+    expect(getDay()).not.to.be.undefined;
   });
 
-  it("should get price",  () => {
-    
+  it('should return ' + currDay, () => {
+    expect(getDay()).to.equal(currDay);
   });
 
-});*/
+});
+
+describe('getAdultUsers()', () => {
+
+  it('should should return array of objects which are bigger then 18', () => {
+    expect(getAdultUsers([{age: 20}, {age: 48}, {age: 18}])).to.eql([{age: 20}, {age: 48}]);
+  });
+
+});
+
+describe('getRandomUsers()', () => {
+
+  it('should should generate random number', () => {
+
+  });
+
+  it('should should generate random number', () => {
+
+  });
+
+});
