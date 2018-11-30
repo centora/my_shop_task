@@ -1,5 +1,6 @@
 import React from 'react';
-import { Aside } from '../aside/index'
+import { Aside } from '../aside';
+import './main.scss';
 
 export const Main = () => (
   <>

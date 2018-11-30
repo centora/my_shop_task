@@ -9,9 +9,9 @@ import { Footer } from './components/footer';
 
 const App = (
   <>
-    <Header></Header>
-    <Main></Main>
-    <Footer></Footer>
+    <Header/>
+    <Main/>
+    <Footer/>
   </>
 );
 
