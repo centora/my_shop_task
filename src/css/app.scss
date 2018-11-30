@@ -1,0 +1,77 @@
+@import "variables";
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $guiter;
+  height: 50px;
+  background: $headerBgColor;
+}
+
+.logo {
+  &, &:hover, &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+
+  color: $logoColor;
+  font-weight: bold;
+  font-size: 20px;
+  &:hover {
+    color: lighten($logoColor, 10);
+  }
+}
+
+.navigation {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.aside {
+  width: 250px;
+  padding: $guiter;
+  background: $asideBgColor;
+}
+
+.content {
+  flex: 1;
+  padding: $guiter;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  padding: $guiter;
+  height: 50px;
+  background: $footerBgColor;
+}
