@@ -1,9 +1,9 @@
-import { Navigation } from '../navigation';
+import { Nav } from '../navigation';
 import './header.scss';
 
 export const Header = () => (
   <header className="header">
     <a href="/" className="logo">Logo</a>
-    <Navigation />
+    <Nav list={['Home', 'Products', 'Contacts']} />
   </header>
 );
