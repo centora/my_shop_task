@@ -14,7 +14,11 @@ const plugins =[
     chunksSortMode: 'none',
     template: './index.html'
   }),
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.ProvidePlugin({
+    React: 'react',
+    Component: ['react', 'Component']
+  })
 ];
 
 if (isFileCSS) {
@@ -55,6 +59,12 @@ module.exports = {
           loader: 'babel-loader',
           options: { presets: ['@babel/preset-env', '@babel/preset-react'] }
         }
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
       }
     ]
   },
