@@ -1,4 +1,5 @@
 import { Aside } from '../aside';
+import { Greeting } from '../greeting';
 import './main.scss';
 
 const Error = (props) => {
@@ -11,6 +12,7 @@ export const Main = () => (
     <main className="main">
       <Aside />
       <div className="content">
+        <Greeting name="Oksana" />
         <h3>Lorem ipsum dolor sit amet</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi assumenda at culpa cum cupiditate
