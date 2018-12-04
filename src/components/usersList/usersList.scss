@@ -1,0 +1,13 @@
+@import "../../css/variables";
+
+.users-list {
+  padding: $guiter;
+  border: 1px solid #666;
+  margin-bottom: $guiter;
+  .user-item {
+    margin-bottom: 5px;
+    strong {
+      margin-right: 5px;
+    }
+  }
+}

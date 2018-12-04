@@ -1,12 +1,8 @@
 @import "../../css/variables";
 
-.main {
-  flex: 1;
+.numbers {
   display: flex;
-  flex-direction: row;
-}
-
-.content {
-  flex: 1;
   padding: $guiter;
+  border: 2px solid red;
+  margin: 0 0 $guiter;
 }
