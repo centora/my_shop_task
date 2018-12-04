@@ -5,6 +5,7 @@ export const Greeting = (props) => {
   let greetText = '';
   const date = new Date();
   const currTime = date.getHours();
+
   if (currTime > 22 && currTime <= 3) {
     greetText = 'Good night';
   } else if (currTime > 3 && currTime <= 12) {

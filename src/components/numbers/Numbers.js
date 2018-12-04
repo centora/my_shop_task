@@ -7,16 +7,20 @@ export const Numbers = (props) => {
     odd,
     even
   } = props;
-  let list = [];
-  for (let i = from; i <= to; i++) {
-    list.push(i);
-  }
+  const list = [];
 
-  if (odd) {
-    list = list.filter(num => num % 2 !== 0);
-  }
-  if (even) {
-    list = list.filter(num => num % 2 === 0);
+  for (let i = from; i <= to; i++) {
+    if (odd) {
+      if (i % 2 !== 0) {
+        list.push(i);
+      }
+    } else if (even) {
+      if (i % 2 === 0) {
+        list.push(i);
+      }
+    } else {
+      list.push(i);
+    }
   }
 
   return (

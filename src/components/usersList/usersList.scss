@@ -6,5 +6,8 @@
   margin-bottom: $guiter;
   .user-item {
     margin-bottom: 5px;
+    strong {
+      margin-right: 5px;
+    }
   }
 }
