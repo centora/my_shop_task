@@ -9,7 +9,7 @@ import { Footer } from './components/footer';
 const App = (
   <>
     <Header />
-    <Main />
+    <Main title="Main title" />
     <Footer />
   </>
 );

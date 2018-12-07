@@ -2,6 +2,7 @@ import { Aside } from '../aside';
 import { Greeting } from '../greeting';
 import { Numbers } from '../numbers';
 import { UsersList } from '../usersList';
+import { Counter } from '../counter';
 import './main.scss';
 
 const Error = (props) => {
@@ -9,51 +10,43 @@ const Error = (props) => {
   return (<mark style={{ color }}>{ text }</mark>);
 };
 
-const users = [
-  {
-    firstName: 'Ali',
-    lastName: 'Baba',
-    age: '60'
-  },
-  {
-    firstName: 'Bred',
-    lastName: 'Pit',
-    age: '48'
-  },
-  {
-    firstName: 'Tom',
-    lastName: 'Krus',
-    age: '40'
-  },
-];
+export class Main extends Component {
+  state = { users: [] };
 
-export const Main = () => (
-  <>
-    <main className="main">
-      <Aside />
-      <div className="content">
-        <Greeting name="Oksana" />
-        <h3>Lorem ipsum dolor sit amet</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi assumenda at culpa cum cupiditate
-          earum est ipsa minima molestias neque nisi officia, officiis omnis pariatur porro sint sit tenetur.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi assumenda at culpa cum cupiditate
-          earum est ipsa minima molestias neque nisi officia, officiis omnis pariatur porro sint sit tenetur.
-        </p>
-        <br />
-        <h3>Displaying Numbers Component</h3>
-        <Numbers from="10" to="20" odd />
-        <br />
-        <h3>Displaying UsersList Component</h3>
-        <UsersList users={users} />
-        <Error
-          text="test"
-          color="red"
-        />
-      </div>
-    </main>
-  </>
+  constructor(props) {
+    super(props);
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({ users }));
+  }
 
-);
+  showUserInfo(user) {
+    alert(user.username);
+  }
+
+  render() {
+    const { title } = this.props;
+    const { users } = this.state;
+
+    return (
+      <main className="main">
+        <Aside />
+        <div className="content">
+          <h1>{title}</h1>
+          <Greeting name="Oksana" />
+          <h3>Displaying Numbers Component</h3>
+          <br />
+          <Counter />
+          <br />
+          <Numbers from="10" to="20" odd />
+          <h3>Displaying UsersList Component</h3>
+          <UsersList users={users} handleClick={this.showUserInfo} />
+          <Error
+            text="test"
+            color="black"
+          />
+        </div>
+      </main>
+    );
+  }
+}
