@@ -5,21 +5,41 @@ const User = (props) => {
   const { name } = user;
 
   return (
-    <div className="user-item" onClick={() => clickHandler(user)}>
+    <li className="user-item" onClick={() => clickHandler(user.id)}>
       { name }
+    </li>
+  );
+};
+
+const Posts = (props) => {
+  const { posts } = props;
+  return (
+    <div className="posts">
+      <h2>Posts</h2>
+      <ul>
+        {
+          posts.map(post => (
+            <li key={post.id} className="post-item">
+              <h4>{post.title}</h4>
+              <div>{post.body}</div>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   );
 };
+
 export const UsersList = (props) => {
-  const { users, handleClick, clearHandle } = props;
+  const { users, posts, handleClick } = props;
   return (
-    <div>
-      <div className="users-list">
+    <div className="users-container">
+      <ul className="users-list">
         {
-          users.map(el => <User key={el.id} user={el} clickHandler={handleClick} />)
+          users.map(user => <User key={user.id} user={user} clickHandler={handleClick} />)
         }
-      </div>
-      <button onClick={() => clearHandle()}>Clear</button>
+      </ul>
+      <Posts posts={posts} />
     </div>
   );
 };

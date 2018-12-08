@@ -17,13 +17,16 @@ const Error = (props) => {
 export class Main extends Component {
   state = {
     users: [],
+    posts: [],
     error: false,
     activeClName: false,
     visibleHiddenBox: false
   };
 
-  showUserInfo(user) {
-    alert(user.username);
+  getRelatedPosts = (userId) => {
+    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+      .then(response => response.json())
+      .then(posts => this.setState({ posts }));
   }
 
   clearUsers = () => {
@@ -59,6 +62,7 @@ export class Main extends Component {
     const { title } = this.props;
     const {
       users,
+      posts,
       error,
       activeClName,
       visibleHiddenBox
@@ -68,21 +72,26 @@ export class Main extends Component {
         <main className="main">
           <Aside />
           <div className="content">
+            <h1>{title}</h1>
             <ToggleButton activeState={activeClName} clickHandler={this.toggleActive} />
             <br />
             <br />
             <div>
               <ToggleHiddenBox visibleBoxStatus={visibleHiddenBox} clickHandler={this.toggleHiddenBox} />
             </div>
-            <h1>{title}</h1>
+            <h3>Displaying UsersList Component</h3>
+            <UsersList
+              users={users}
+              posts={posts}
+              handleClick={this.getRelatedPosts}
+              clearHandle={this.clearUsers}
+            />
             <Greeting name="Oksana" />
             <h3>Displaying Numbers Component</h3>
             <br />
             <Counter />
             <br />
             <Numbers from="10" to="20" odd />
-            <h3>Displaying UsersList Component</h3>
-            <UsersList users={users} handleClick={this.showUserInfo} clearHandle={this.clearUsers} />
             <Error
               text="test"
               color="black"
