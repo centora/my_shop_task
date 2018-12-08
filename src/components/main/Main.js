@@ -3,8 +3,11 @@ import { Greeting } from '../greeting';
 import { Numbers } from '../numbers';
 import { UsersList } from '../usersList';
 import { Counter } from '../counter';
-import './main.scss';
+
 import { ToggleButton } from '../toggleButton';
+import { ToggleHiddenBox } from '../toggleHiddenBox';
+
+import './main.scss';
 
 const Error = (props) => {
   const { color, text } = props;
@@ -12,7 +15,12 @@ const Error = (props) => {
 };
 
 export class Main extends Component {
-  state = { users: [], error: false, activeClName: false };
+  state = {
+    users: [],
+    error: false,
+    activeClName: false,
+    visibleHiddenBox: false
+  };
 
   showUserInfo(user) {
     alert(user.username);
@@ -29,6 +37,13 @@ export class Main extends Component {
     });
   }
 
+  toggleHiddenBox = () => {
+    const { visibleHiddenBox } = this.state;
+    this.setState({
+      visibleHiddenBox: !visibleHiddenBox
+    });
+  }
+
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
@@ -42,13 +57,23 @@ export class Main extends Component {
 
   render() {
     const { title } = this.props;
-    const { users, error, activeClName } = this.state;
+    const {
+      users,
+      error,
+      activeClName,
+      visibleHiddenBox
+    } = this.state;
     if (!error) {
       return (
         <main className="main">
           <Aside />
           <div className="content">
             <ToggleButton activeState={activeClName} clickHandler={this.toggleActive} />
+            <br />
+            <br />
+            <div>
+              <ToggleHiddenBox visibleBoxStatus={visibleHiddenBox} clickHandler={this.toggleHiddenBox} />
+            </div>
             <h1>{title}</h1>
             <Greeting name="Oksana" />
             <h3>Displaying Numbers Component</h3>
