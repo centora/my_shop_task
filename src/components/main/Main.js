@@ -21,21 +21,10 @@ export class Main extends Component {
     this.setState({ users: [] });
   }
 
-  static getDerivedStateFromProps(nextProps, state) {
-    console.log(state.users);
-    return null;
-  }
-
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(users => this.setState({ users }));
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.state);
-    console.log(nextState);
-    return true;
   }
 
   componentDidCatch(error, info) {
