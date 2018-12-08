@@ -13,6 +13,7 @@ const User = (props) => {
 
 const Posts = (props) => {
   const { posts } = props;
+
   return (
     <div className="posts">
       <h2>Posts</h2>
@@ -32,6 +33,7 @@ const Posts = (props) => {
 
 export const UsersList = (props) => {
   const { users, posts, handleClick } = props;
+
   return (
     <div className="users-container">
       <ul className="users-list">
