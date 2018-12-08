@@ -11,12 +11,15 @@ const User = (props) => {
   );
 };
 export const UsersList = (props) => {
-  const { users, handleClick } = props;
+  const { users, handleClick, clearHandle } = props;
   return (
-    <div className="users-list">
-      {
-        users.map(el => <User key={el.id} user={el} clickHandler={handleClick} />)
-      }
+    <div>
+      <div className="users-list">
+        {
+          users.map(el => <User key={el.id} user={el} clickHandler={handleClick} />)
+        }
+      </div>
+      <button onClick={() => clearHandle()}>Clear</button>
     </div>
   );
 };
