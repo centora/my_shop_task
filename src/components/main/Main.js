@@ -6,6 +6,7 @@ import { Counter } from '../counter';
 
 import { ToggleButton } from '../toggleButton';
 import { ToggleHiddenBox } from '../toggleHiddenBox';
+import { BrowserGeoLocation } from '../browserGeoLocation';
 
 import './main.scss';
 
@@ -20,7 +21,12 @@ export class Main extends Component {
     posts: [],
     error: false,
     activeClName: false,
-    visibleHiddenBox: false
+    visibleHiddenBox: false,
+    location: {
+      lat: '',
+      lan: ''
+    },
+    showLocationInfo: false
   };
 
   getRelatedPosts = (userId) => {
@@ -47,15 +53,32 @@ export class Main extends Component {
     });
   }
 
+  getGeolocation = () => {
+    this.setState({ showLocationInfo: true });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  }
+
+  showPosition = (position) => {
+    this.setState({
+      location: {
+        lat: position.coords.latitude,
+        lan: position.coords.longitude
+      }
+    });
+  }
+
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(users => this.setState({ users }));
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch() {
     this.setState({ error: true });
-    console.log(error, info);
   }
 
   render() {
@@ -65,7 +88,9 @@ export class Main extends Component {
       posts,
       error,
       activeClName,
-      visibleHiddenBox
+      visibleHiddenBox,
+      location,
+      showLocationInfo
     } = this.state;
     if (!error) {
       return (
@@ -79,6 +104,8 @@ export class Main extends Component {
             <div>
               <ToggleHiddenBox visibleBoxStatus={visibleHiddenBox} clickHandler={this.toggleHiddenBox} />
             </div>
+            <br />
+            <BrowserGeoLocation location={location} showInfo={showLocationInfo} clickHandler={this.getGeolocation} />
             <h3>Displaying UsersList Component</h3>
             <UsersList
               users={users}
