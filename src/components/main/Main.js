@@ -7,6 +7,7 @@ import { Counter } from '../counter';
 import { ToggleButton } from '../toggleButton';
 import { ToggleHiddenBox } from '../toggleHiddenBox';
 import { BrowserGeoLocation } from '../browserGeoLocation';
+import { Timer } from '../timer';
 
 import './main.scss';
 
@@ -26,7 +27,8 @@ export class Main extends Component {
       lat: '',
       lan: ''
     },
-    showLocationInfo: false
+    showLocationInfo: false,
+    showTimer: true,
   };
 
   getRelatedPosts = (userId) => {
@@ -71,6 +73,12 @@ export class Main extends Component {
     });
   }
 
+  hideTimer = () => {
+    this.setState({
+      showTimer: false
+    });
+  }
+
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
@@ -90,7 +98,8 @@ export class Main extends Component {
       activeClName,
       visibleHiddenBox,
       location,
-      showLocationInfo
+      showLocationInfo,
+      showTimer
     } = this.state;
     if (!error) {
       return (
@@ -106,6 +115,12 @@ export class Main extends Component {
             </div>
             <br />
             <BrowserGeoLocation location={location} showInfo={showLocationInfo} clickHandler={this.getGeolocation} />
+            <br />
+            <div className="flex-container align-items-center">
+              <button type="button" onClick={() => this.hideTimer()}>Destroy Timer</button> &nbsp; &nbsp;
+              {showTimer && <Timer />}
+            </div>
+            <br />
             <h3>Displaying UsersList Component</h3>
             <UsersList
               users={users}
