@@ -15,6 +15,13 @@
 .flex-container {
   display: flex;
 }
+
 .align-items-center {
   align-items: center;
+}
+
+.mount-component-preview {
+  margin: $guiter 0;
+  padding: $guiter;
+  background: rgba(157, 209, 216, 0.6);
 }

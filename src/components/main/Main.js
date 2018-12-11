@@ -8,6 +8,7 @@ import { ToggleButton } from '../toggleButton';
 import { ToggleHiddenBox } from '../toggleHiddenBox';
 import { BrowserGeoLocation } from '../browserGeoLocation';
 import { Timer } from '../timer';
+import { Mount } from '../mount';
 
 import './main.scss';
 
@@ -29,6 +30,8 @@ export class Main extends Component {
     },
     showLocationInfo: false,
     showTimer: true,
+    showMount: true,
+    counter: 0,
   };
 
   getRelatedPosts = (userId) => {
@@ -99,7 +102,9 @@ export class Main extends Component {
       visibleHiddenBox,
       location,
       showLocationInfo,
-      showTimer
+      showTimer,
+      showMount,
+      counter
     } = this.state;
     if (!error) {
       return (
@@ -120,6 +125,20 @@ export class Main extends Component {
               <button type="button" onClick={() => this.hideTimer()}>Destroy Timer</button> &nbsp; &nbsp;
               {showTimer && <Timer />}
             </div>
+            <div className="mount-component-preview">
+              <h3>Mount: Component Lifecycle</h3>
+              <div>
+                <button onClick={() => this.setState({ counter: counter + 1 })}>Inc</button>
+                <span className="count-text">{counter}</span>
+                <br /><br />
+                <button onClick={() => this.setState({ showMount: !showMount })}>
+                  {showMount ? 'Destroy' : 'Create'}
+                </button>
+
+                {showMount && <Mount code={counter} />}
+              </div>
+            </div>
+
             <br />
             <h3>Displaying UsersList Component</h3>
             <UsersList

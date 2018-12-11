@@ -4,9 +4,9 @@ export const ToggleHiddenBox = (props) => {
   const { visibleBoxStatus, clickHandler } = props;
 
   return (
-    <>
-      <button type="button" onClick={() => clickHandler()}>{visibleBoxStatus ? 'Hide' : 'Show'}</button>
+    <div className="flex-container align-items-center">
+      <button type="button" onClick={() => clickHandler()}>{visibleBoxStatus ? 'Hide' : 'Show'}</button>&nbsp;&nbsp;
       <div className={visibleBoxStatus ? '' : 'hidden'}>Here you can see some secret message.</div>
-    </>
+    </div>
   );
 };

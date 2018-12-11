@@ -5,6 +5,7 @@ export class Timer extends Component {
     super(props);
 
     this.state = {
+      today: '',
       time: ''
     };
 
@@ -18,15 +19,19 @@ export class Timer extends Component {
   startTime = () => {
     const date = new Date();
     const time = date.toLocaleTimeString();
+    const today = date.toLocaleDateString();
     this.setState({
+      today,
       time
     });
   }
 
   render() {
-    const { time } = this.state;
+    const { time, today } = this.state;
     return (
       <div>
+        {today}
+        <br />
         {time}
       </div>
     );

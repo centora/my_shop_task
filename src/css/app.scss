@@ -8,6 +8,15 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  cursor: pointer;
+  color: #1d3d8c;
+}
+
+button {
+  cursor: pointer;
+}
+
 #app {
   display: flex;
   flex-direction: column;
