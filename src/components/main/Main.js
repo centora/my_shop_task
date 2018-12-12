@@ -22,13 +22,6 @@ export class Main extends Component {
     users: [],
     posts: [],
     error: false,
-    activeClName: false,
-    visibleHiddenBox: false,
-    location: {
-      lat: '',
-      lan: ''
-    },
-    showLocationInfo: false,
     showTimer: true,
     showMount: true,
     counter: 0,
@@ -42,38 +35,6 @@ export class Main extends Component {
 
   clearUsers = () => {
     this.setState({ users: [] });
-  }
-
-  toggleActive = () => {
-    const { activeClName } = this.state;
-    this.setState({
-      activeClName: !activeClName
-    });
-  }
-
-  toggleHiddenBox = () => {
-    const { visibleHiddenBox } = this.state;
-    this.setState({
-      visibleHiddenBox: !visibleHiddenBox
-    });
-  }
-
-  getGeolocation = () => {
-    this.setState({ showLocationInfo: true });
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
-    } else {
-      console.log('Geolocation is not supported by this browser.');
-    }
-  }
-
-  showPosition = (position) => {
-    this.setState({
-      location: {
-        lat: position.coords.latitude,
-        lan: position.coords.longitude
-      }
-    });
   }
 
   hideTimer = () => {
@@ -98,10 +59,6 @@ export class Main extends Component {
       users,
       posts,
       error,
-      activeClName,
-      visibleHiddenBox,
-      location,
-      showLocationInfo,
       showTimer,
       showMount,
       counter
@@ -112,17 +69,17 @@ export class Main extends Component {
           <Aside />
           <div className="content">
             <h1>{title}</h1>
-            <ToggleButton activeState={activeClName} clickHandler={this.toggleActive} />
+            <ToggleButton />
             <br />
             <br />
             <div>
-              <ToggleHiddenBox visibleBoxStatus={visibleHiddenBox} clickHandler={this.toggleHiddenBox} />
+              <ToggleHiddenBox />
             </div>
             <br />
-            <BrowserGeoLocation location={location} showInfo={showLocationInfo} clickHandler={this.getGeolocation} />
+            <BrowserGeoLocation />
             <br />
             <div className="flex-container align-items-center">
-              <button type="button" onClick={() => this.hideTimer()}>Destroy Timer</button> &nbsp; &nbsp;
+              <button type="button" onClick={this.hideTimer}>Destroy Timer</button> &nbsp; &nbsp;
               {showTimer && <Timer />}
             </div>
             <div className="mount-component-preview">

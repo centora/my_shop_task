@@ -12,13 +12,14 @@ export class Mount extends Component {
   }
 
   static getDerivedStateFromProps(nextProps) {
-    if (nextProps.code !== 0 && nextProps.code % 3 === 0 && nextProps.code % 5 === 0) {
+    const { code } = nextProps;
+    if (code !== 0 && code % 3 === 0 && code % 5 === 0) {
       return { color: '#0ff' };
     }
-    if (nextProps.code !== 0 && nextProps.code % 3 === 0) {
+    if (code !== 0 && code % 3 === 0) {
       return { color: 'green' };
     }
-    if (nextProps.code !== 0 && nextProps.code % 5 === 0) {
+    if (code !== 0 && code % 5 === 0) {
       return { color: 'blue' };
     }
     return { color: 'grey' };

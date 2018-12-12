@@ -1,9 +1,24 @@
 import './toggle-button.scss';
 
-export const ToggleButton = (props) => {
-  const { activeState, clickHandler } = props;
+export class ToggleButton extends Component {
+  state = {
+    active: false
+  }
 
-  return (
-    <button type="button" className={activeState ? 'active' : ''} onClick={() => clickHandler()}>Toggle Active</button>
-  );
-};
+  toogleActive = () => {
+    const { active } = this.state;
+    this.setState({
+      active: !active
+    });
+  }
+
+  render() {
+    const { active } = this.state;
+
+    return (
+      <button type="button" className={active ? 'active' : ''} onClick={this.toogleActive}>
+        Toggle Active
+      </button>
+    );
+  }
+}
