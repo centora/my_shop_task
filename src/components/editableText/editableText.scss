@@ -1,0 +1,14 @@
+.editable-box {
+  display: inline-block;
+  margin: 15px 0;
+  font-size: 16px;
+  .editable-text {
+    display: inline-block;
+    padding: 5px;
+    border: 2px solid transparent;
+  }
+  .editable-control {
+    padding: 5px 10px;
+    font: inherit;
+  }
+}
