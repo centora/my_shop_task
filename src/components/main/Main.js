@@ -10,7 +10,7 @@ export class Main extends Component {
       <main className="main">
         <div className="content">
           <h1>{title}</h1>
-          <EditableText fn={fn} />
+          <EditableText onUpdateFieldHandle={fn} />
           <UserForm />
         </div>
       </main>
