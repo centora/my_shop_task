@@ -1,40 +1,49 @@
-import { UserForm } from '../userForm';
+import { Login } from '../../pages/login';
+import { checkUser } from '../../services';
 import './main.scss';
-import { EditableText } from '../editableText';
 
 export class Main extends Component {
   state = {
-    data: ''
+    user: null,
+    loading: true,
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        data: {
-          email: 'oksa@oksa.com',
-          name: 'Oksana',
-          surname: 'Oksa'
-        }
-      });
-    }, 1000);
+    checkUser()
+      .then(user => this.setState({ loading: false, user }))
+      .catch(() => this.setState({ loading: false }));
   }
 
-  onSave = (data) => {
-    console.log(data);
+  onLogin = (user) => {
+    this.setState({ user });
+  }
+
+  renderContent() {
+    const { user } = this.state;
+    return (
+      <>
+        <div className="content">
+          <h1>{user ? `Hello ${user.firstName}` : 'Login'}</h1>
+          {
+            user
+              ? <p>Hello</p>
+              : <Login onLogin={this.onLogin} />
+          }
+        </div>
+      </>
+    );
   }
 
   render() {
-    const { title } = this.props;
-    const { data } = this.state;
-    const fn = text => console.log(text);
-
+    const { loading } = this.state;
     return (
       <main className="main">
-        <div className="content">
-          <h1>{title}</h1>
-          <EditableText onUpdateFieldHandle={fn} />
-          <UserForm data={data} disabled={{ email: true }} onSave={this.onSave} />
-        </div>
+        {
+          loading
+            ? 'Loding...'
+            : this.renderContent()
+        }
+
       </main>
     );
   }
