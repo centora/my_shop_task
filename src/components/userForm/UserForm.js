@@ -84,6 +84,8 @@ export class UserForm extends Component {
   }
 
   render() {
+    const { state } = this;
+    const { disabled = {} } = this.props;
     return (
       <form action="" className="form" autoComplete="off" onSubmit={this.onSubmit}>
         <div>
@@ -93,14 +95,15 @@ export class UserForm extends Component {
                 <input
                   type={field.secure ? 'password' : 'text'}
                   name={field.label}
-                  value={this.state[field.label].value}
+                  value={state[field.label].value}
                   placeholder={field.placeholder}
+                  disabled={disabled[field.label]}
                   onBlur={this.onValidate}
                   onChange={this.onChange}
                 />
                 {
-                  this.state[field.label].error
-                  && <mark>{this.state[field.label].error}</mark>
+                  state[field.label].error
+                  && <mark>{state[field.label].error}</mark>
                 }
               </div>
             ))

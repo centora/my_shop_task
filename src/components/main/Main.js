@@ -33,7 +33,7 @@ export class Main extends Component {
         <div className="content">
           <h1>{title}</h1>
           <EditableText onUpdateFieldHandle={fn} />
-          <UserForm data={data} onSave={this.onSave} />
+          <UserForm data={data} disabled={{ email: true }} onSave={this.onSave} />
         </div>
       </main>
     );
