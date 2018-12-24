@@ -30,14 +30,14 @@ export class EditableText extends Component {
   }
 
   render() {
-    const { onUpdateFieldHandle } = this.props;
+    const { onUpdateFieldHandle, width, children } = this.props;
     const { editText, updateText, onChange } = this;
     const { editable, editValue } = this.state;
     return (
       <div className="editable-box" onClick={editText}>
         {
           !editable ? (
-            <span className="editable-text">{editValue}</span>
+            <span className="editable-text">{children}</span>
           ) : (
             <input
               autoFocus
@@ -45,6 +45,7 @@ export class EditableText extends Component {
               onChange={onChange}
               onBlur={() => updateText(onUpdateFieldHandle)}
               value={editValue}
+              style={{ width }}
               className="editable-control"
             />)
         }

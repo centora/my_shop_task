@@ -1,6 +1,7 @@
 import { UserForm } from '../userForm';
 import './main.scss';
 import { EditableText } from '../editableText';
+import { ProductDetails } from '../productDetails';
 
 export class Main extends Component {
   render() {
@@ -12,6 +13,9 @@ export class Main extends Component {
           <h1>{title}</h1>
           <EditableText onUpdateFieldHandle={fn} />
           <UserForm />
+          <br />
+          <br />
+          <ProductDetails />
         </div>
       </main>
     );
