@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import './home.scss';
 import { getInfo } from '../../services';
 
-export class Home extends Component {
+class Home extends Component {
   state = {
     info: null
   }
@@ -32,3 +33,9 @@ export class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  user: PropTypes.object.isRequired
+};
+
+export default Home;

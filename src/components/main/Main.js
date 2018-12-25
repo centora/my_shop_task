@@ -1,5 +1,5 @@
 import { Login } from '../../pages/login';
-import { Home } from '../../pages/home';
+import Home from '../../pages/home';
 import './main.scss';
 
 export const renderContent = (user, onLogin) => (
