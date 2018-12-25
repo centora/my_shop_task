@@ -3,7 +3,9 @@ import './header.scss';
 
 export const Header = ({ user, info }) => (
   <header className="header">
-    <a href="/" className="logo">Logo</a>
+    <a href="/" className="logo">
+      <img src="images/logo.png" alt="Todo" />
+    </a>
     <Nav list={['Home', 'Products', 'Contacts']} />
     <div className="user-box">
       {

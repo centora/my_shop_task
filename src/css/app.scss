@@ -1,7 +1,7 @@
-
 body {
   margin: 0;
   padding: 0;
+  background: url('/images/main-bg.png') 0 0 repeat;
 }
 
 * {
@@ -23,5 +23,12 @@ button {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+  background: #1d3d8c;
+  color: #fff;
 }
 
