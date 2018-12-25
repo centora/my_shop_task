@@ -1,2 +1,2 @@
 export * from './user';
-export { shopInfo } from './categories';
+export * from './categories';
