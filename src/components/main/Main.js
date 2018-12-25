@@ -1,6 +1,7 @@
 import { Login } from '../../pages/login';
 import { checkUser } from '../../services';
 import './main.scss';
+import { ProductDetails } from '../productDetails';
 
 export class Main extends Component {
   state = {
@@ -44,6 +45,7 @@ export class Main extends Component {
             : this.renderContent()
         }
 
+        <ProductDetails />
       </main>
     );
   }
