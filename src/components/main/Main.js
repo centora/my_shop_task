@@ -1,4 +1,5 @@
 import { Login } from '../../pages/login';
+import { Home } from '../../pages/home';
 import { checkUser } from '../../services';
 import './main.scss';
 
@@ -23,10 +24,9 @@ export class Main extends Component {
     return (
       <>
         <div className="content">
-          <h1>{user ? `Hello ${user.firstName}` : 'Login'}</h1>
           {
             user
-              ? <p>Hello</p>
+              ? <Home user={user} />
               : <Login onLogin={this.onLogin} />
           }
         </div>

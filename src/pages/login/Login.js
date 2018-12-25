@@ -17,6 +17,7 @@ export const Login = ({ onLogin }) => {
 
   return (
     <form onSubmit={onSubmit}>
+      <h1>Login</h1>
       <input
         type="text"
         placeholder="Enter email"
