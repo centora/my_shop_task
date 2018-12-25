@@ -2,14 +2,12 @@ import ReactDom from 'react-dom';
 
 import './css/app.scss';
 
-import { Header } from './components/header';
-import { Main } from './components/main';
 import { Footer } from './components/footer';
+import { AppComponent } from './appComponent';
 
 const App = (
   <>
-    <Header />
-    <Main title="Main title" />
+    <AppComponent />
     <Footer />
   </>
 );
