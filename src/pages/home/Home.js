@@ -1,7 +1,6 @@
-import { Component } from 'react';
 import './home.scss';
 import { getInfo } from '../../services';
-  
+
 export class Home extends Component {
   state = {
     info: null
