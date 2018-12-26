@@ -31,28 +31,27 @@ export class EditableText extends Component {
 
   renderEditableControl() {
     const {
-      onUpdateFieldHandle,
       width,
       multirow
     } = this.props;
     const { onChange, updateText } = this;
     const { editValue } = this.state;
-    const editableControl = !multirow ? (
-      <input
+    const editableControl = multirow ? (
+      <textarea
         autoFocus
         type="text"
         onChange={onChange}
-        onBlur={() => updateText(onUpdateFieldHandle)}
+        onBlur={() => updateText()}
         value={editValue}
         style={{ width }}
         className="editable-control"
       />
     ) : (
-      <textarea
+      <input
         autoFocus
         type="text"
         onChange={onChange}
-        onBlur={() => updateText(onUpdateFieldHandle)}
+        onBlur={() => updateText()}
         value={editValue}
         style={{ width }}
         className="editable-control"
