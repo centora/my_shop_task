@@ -1,5 +1,6 @@
 import './tabs.scss';
 import { TabNav } from './TabNav';
+import { Tab } from './Tab';
 
 export class Tabs extends Component {
   state = {
@@ -13,13 +14,15 @@ export class Tabs extends Component {
   }
 
   render() {
-    const { tabs } = this.props;
+    const { children } = this.props;
     const { selectedIndex } = this.state;
+    const tabs = children.filter(child => child.type === Tab);
+    const titles = tabs.map(tab => tab.props.title);
     return (
       <div className="tabs">
-        <TabNav titles={tabs.map(tab => tab.title)} selectedIndex={selectedIndex} selectTab={this.selectTab} />
+        <TabNav titles={titles} selectedIndex={selectedIndex} selectTab={this.selectTab} />
         <section className="tab-content">
-          { tabs[selectedIndex].content }
+          { tabs[selectedIndex].props.children }
         </section>
       </div>
     );
