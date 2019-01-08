@@ -18,8 +18,8 @@ export class EditableText extends Component {
       editable: false
     });
 
-    if (typeof fn === 'function') {
-      fn(this.state.editValue);
+    if (typeof this.props.onUpdateFieldHandle === 'function') {
+      this.props.onUpdateFieldHandle(this.state.editValue);
     }
   }
 

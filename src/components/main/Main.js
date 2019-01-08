@@ -2,6 +2,7 @@ import { Login } from '../../pages/login';
 import { checkUser, shopInfo } from '../../services';
 import './main.scss';
 import { ProductDetails } from '../productDetails';
+import { EditableText } from '../editableText';
 
 export class Main extends Component {
   state = {
