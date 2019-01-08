@@ -1,0 +1,9 @@
+@import "../../css/variables";
+
+.products {
+  display: flex;
+  align-items: center;
+  padding: $guiter;
+  height: 50px;
+  background: $footerBgColor;
+}
