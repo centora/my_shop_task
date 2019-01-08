@@ -43,7 +43,8 @@ module.exports = {
   output: {
     filename: 'bundle-[name].js',
     path: path.resolve(__dirname, 'dist'),
-    chunkFilename: 'vendors.js'
+    chunkFilename: 'vendors.js',
+    publicPath: '/',
   },
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
@@ -119,6 +120,7 @@ module.exports = {
     publicPath: '/',
     hot: true,
     port: 3000,
+    historyApiFallback: true,
   },
 
   devtool: 'inline-source-map'

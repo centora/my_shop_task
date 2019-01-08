@@ -1,15 +1,14 @@
 import ReactDom from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import './css/app.scss';
 
-import { Footer } from './components/footer';
 import { AppComponent } from './appComponent';
 
 const App = (
-  <>
+  <Router>
     <AppComponent />
-    <Footer />
-  </>
+  </Router>
 );
 
 ReactDom.render(App, document.getElementById('app'));
