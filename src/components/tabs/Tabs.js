@@ -13,6 +13,13 @@ export class Tabs extends Component {
     });
   }
 
+  componentDidMount() {
+    const { selectedIndex } = this.props;
+    this.setState({
+      selectedIndex
+    });
+  }
+
   render() {
     const { children } = this.props;
     const { selectedIndex } = this.state;

@@ -39,7 +39,7 @@ export const Main = (
                   ? <Home user={user} />
                   : <renderContent user={user} onLogin={onLogin} />
               }
-              <Tabs>
+              <Tabs selectedIndex={1}>
                 <Tab title="Tab 1">
                   <h3>Tab header 1</h3>
                   <p>Some content is here</p>
