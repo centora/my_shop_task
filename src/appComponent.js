@@ -1,6 +1,9 @@
 import { Header } from './components/header';
+import { Footer } from './components/footer';
 import { Main } from './components/main';
 import { checkUser, getInfo } from './services';
+
+import { Pages } from './pages/Pages';
 
 export class AppComponent extends Component {
   state = {
@@ -36,7 +39,10 @@ export class AppComponent extends Component {
           info={info}
           onLogin={this.onLogin}
           loading={loading}
-        />
+        >
+          <Pages />
+        </Main>
+        <Footer />
       </>
     );
   }

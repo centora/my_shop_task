@@ -1,18 +1,9 @@
-import { Login } from '../../pages/login';
-import Home from '../../pages/home';
-import { Tabs, Tab } from '../tabs';
 import './main.scss';
-
-export const Section = ({ children }) => (
-  <section>{children && children.filter(child => child.type === 'p')}</section>
-);
 
 export const Main = (
   {
-    info,
-    user,
     loading,
-    onLogin
+    children
   }
 ) => (
   <main className="main">
@@ -22,27 +13,7 @@ export const Main = (
         : (
           <>
             <div className="content">
-              {
-                user
-                  ? <Home user={user} info={info} />
-                  : <Login onLogin={onLogin} />
-              }
-              <Tabs>
-                <Tab title="Tab 1">
-                  <h3>Tab header 1</h3>
-                  <p>Some content is here</p>
-                </Tab>
-                <Tab title="Tab 2">
-                  <h3>Tab header 2</h3>
-                  <p>Some content is here</p>
-                  <time>{new Date().toLocaleDateString()}</time>
-                </Tab>
-              </Tabs>
-              <Section>
-                <p>I am p</p>
-                <span>I am span</span>
-                <p>I am a second p</p>
-              </Section>
+              {children}
             </div>
           </>
         )
