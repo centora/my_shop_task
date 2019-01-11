@@ -8,7 +8,6 @@ export const Login = ({ onLogin }) => {
       email: elements.email.value,
       password: elements.password.value
     };
-    console.log(data);
 
     login(data).then(onLogin);
 

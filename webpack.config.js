@@ -48,6 +48,12 @@ module.exports = {
   },
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
+  resolve: {
+    alias: {
+      'services': path.resolve(__dirname, './src/services' ),
+      'components': path.resolve(__dirname, './src/components' ),
+    }
+  },
 
   module: {
     rules: [

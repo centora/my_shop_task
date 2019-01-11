@@ -1,5 +1,5 @@
 import './createUser.scss';
-import { UserForm } from '../../components/userForm';
+import { UserForm } from 'components/userForm';
 
 const CreateUser = () => (
   <>

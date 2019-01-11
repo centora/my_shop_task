@@ -1,3 +1,4 @@
+import { withRouter } from 'react-router-dom';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Main } from './components/main';
@@ -29,18 +30,33 @@ export class AppComponent extends Component {
     this.setState({ user });
   }
 
+  onLogout = () => {
+    this.setState({ user: null });
+  }
+
   render() {
-    const { user, info, loading } = this.state;
+    const {
+      user,
+      info,
+      loading
+    } = this.state;
+    const ConnectedHeader = withRouter(({ history }) => (
+      <Header
+        user={user}
+        info={info}
+        onLogout={this.onLogout}
+      />
+    ));
     return (
       <>
-        <Header user={user} info={info} />
+        <ConnectedHeader />
         <Main
           user={user}
           info={info}
           onLogin={this.onLogin}
           loading={loading}
         >
-          <Pages />
+          <Pages user={user} info={info} onLogin={this.onLogin} />
         </Main>
         <Footer />
       </>
