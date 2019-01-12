@@ -4,7 +4,7 @@ import './editableText.scss';
 export class EditableText extends Component {
   state = {
     editable: false,
-    editValue: 'Editable text'
+    editValue: this.props.text
   }
 
   editText = () => {
@@ -29,24 +29,47 @@ export class EditableText extends Component {
     });
   }
 
+  renderEditableControl() {
+    const {
+      onUpdateFieldHandle,
+      width,
+      multirow
+    } = this.props;
+    const { onChange, updateText } = this;
+    const { editValue } = this.state;
+    const editableControl = !multirow ? (
+      <input
+        autoFocus
+        type="text"
+        onChange={onChange}
+        onBlur={() => updateText(onUpdateFieldHandle)}
+        value={editValue}
+        style={{ width }}
+        className="editable-control"
+      />
+    ) : (
+      <textarea
+        autoFocus
+        type="text"
+        onChange={onChange}
+        onBlur={() => updateText(onUpdateFieldHandle)}
+        value={editValue}
+        style={{ width }}
+        className="editable-control"
+      />
+    );
+    return editableControl;
+  }
+
   render() {
-    const { onUpdateFieldHandle } = this.props;
-    const { editText, updateText, onChange } = this;
+    const { editText } = this;
     const { editable, editValue } = this.state;
     return (
       <div className="editable-box" onClick={editText}>
         {
           !editable ? (
-            <span className="editable-text">{editValue}</span>
-          ) : (
-            <input
-              autoFocus
-              type="text"
-              onChange={onChange}
-              onBlur={() => updateText(onUpdateFieldHandle)}
-              value={editValue}
-              className="editable-control"
-            />)
+            <div className="editable-text">{editValue}</div>
+          ) : this.renderEditableControl()
         }
       </div>
     );

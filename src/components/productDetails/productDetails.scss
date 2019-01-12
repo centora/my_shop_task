@@ -1,0 +1,21 @@
+.edit-form {
+  padding: 15px;
+  width: 400px;
+  background: #cfcfcf;
+  .form-title {
+    text-align: center;
+    margin: 0 0 15px;
+  }
+
+  .description {
+    .editable-box,
+    .editable-text {
+      display: block;
+      white-space: pre-wrap;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+  }
+}
