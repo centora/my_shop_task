@@ -1,5 +1,8 @@
 import './product.scss';
+import { ProductDetails } from 'components/productDetails';
 
 export const Product = () => (
-  <product className="footer">2019</product>
+  <div>
+    <ProductDetails />
+  </div>
 );

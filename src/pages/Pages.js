@@ -2,19 +2,40 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { Login } from './login';
 import Home from './home';
 import CreateUser from './createUser';
+import { Product } from './product';
+import { Products } from './products';
+import { Categories } from './categories';
+import { Category } from './category';
 
-export const Pages = ({ user, onLogin, info }) => {
+export const Pages = ({
+  user,
+  onLogin,
+  info,
+  categories
+}) => {
   const homePathes = ['/', '/home'];
   return (
     <Switch>
+      <Route
+        path="/categories"
+        exact
+        render={() => <Categories categories={categories} />}
+        key="categories"
+      />
+      <Route
+        path="/categories/:id"
+        exact
+        render={({ match }) => <Category categories={categories} match={match} />}
+        key="category"
+      />
+      <Route
+        path={homePathes}
+        exact
+        render={({ history }) => <Home user={user} info={info} history={history} />}
+        key="home"
+      />
       {
         user ? [
-          <Route
-            path={homePathes}
-            exact
-            render={() => <Home user={user} info={info} />}
-            key="home"
-          />,
           <Route
             path="/update"
             exact
@@ -24,13 +45,13 @@ export const Pages = ({ user, onLogin, info }) => {
           <Route
             path="/products"
             exact
-            render={() => <h1>Products PAge</h1>}
+            component={Products}
             key="products"
           />,
           <Route
             path="/product"
             exact
-            render={() => <h1>Product PAge</h1>}
+            component={Product}
             key="product"
           />,
           <Route
@@ -41,12 +62,6 @@ export const Pages = ({ user, onLogin, info }) => {
           />,
           <Redirect from="/signin" to="/" key="toHome" />
         ] : [
-          <Route
-            path={homePathes}
-            exact
-            render={() => <h1>Hello!</h1>}
-            key="start"
-          />,
           <Route
             path="/signin"
             exact
@@ -62,7 +77,9 @@ export const Pages = ({ user, onLogin, info }) => {
             path="/success"
             render={() => <h1>Success PAge</h1>}
             key="success"
-          />
+          />,
+          <Redirect from="/contacts" to="/" key="contactsHome" />,
+          <Redirect from="/shop" to="/categories" key="shopCategories" />
         ]
       }
       <Route

@@ -16,13 +16,12 @@ export const Header = ({
       history.push('/');
     });
   };
-
   return (
     <header className="header">
       <Link to="/" className="logo">
-        <img src="images/logo.png" alt="Todo" />
+        <img src="/images/logo.png" alt="Todo" />
       </Link>
-      <Nav list={['Home', 'Products', 'Contacts']} />
+      <Nav list={['Home', 'Shop', 'Categories', 'Contacts']} />
       <div className="user-box">
         {
           user ? (
@@ -32,10 +31,7 @@ export const Header = ({
               <span><a href="#" onClick={onLogoutHandler}>Logout</a></span>
             </>
           ) : (
-            <>
-              <span><NavLink to="/signin" activeClassName="active">Signin</NavLink></span>
-              <span><NavLink to="/signup" activeClassName="active">Signup</NavLink></span>
-            </>
+            <Nav list={['Signin', 'Signup']} />
           )
         }
       </div>

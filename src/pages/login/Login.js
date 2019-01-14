@@ -15,25 +15,29 @@ export const Login = ({ onLogin }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Login</h1>
-      <input
-        type="text"
-        placeholder="Enter email"
-        required
-        name="email"
-        defaultValue="admin@a.com"
-      />
-      <br />
-      <input
-        type="password"
-        placeholder="Enter password"
-        required
-        name="password"
-        defaultValue="admin"
-      />
-      <br />
-      <button type="submit">Login</button>
+    <form onSubmit={onSubmit} className="form">
+      <h1 className="main-title">Login</h1>
+      <div className="form-group">
+        <input
+          type="text"
+          placeholder="Enter email"
+          required
+          name="email"
+          defaultValue="admin@a.com"
+        />
+      </div>
+      <div className="form-group">
+        <input
+          type="password"
+          placeholder="Enter password"
+          required
+          name="password"
+          defaultValue="admin"
+        />
+      </div>
+      <div className="button-group">
+        <button type="submit" className="btn-submit">Login</button>
+      </div>
     </form>
   );
 };

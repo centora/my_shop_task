@@ -1,1 +1,16 @@
-.login {}
+.form {
+  font-size: 18px;
+  .form-group {
+    margin-bottom: 15px;
+  }
+  input {
+    width: 200px;
+    height: 40px;
+    background: #fff;
+    border-radius: 3px;
+    border: 0;
+    padding: 0 10px;
+    font-size: inherit;
+  }
+
+}

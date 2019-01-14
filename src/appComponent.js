@@ -2,7 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Main } from './components/main';
-import { checkUser, getInfo } from './services';
+import { checkUser, getInfo, getCategories } from './services';
 
 import { Pages } from './pages/Pages';
 
@@ -10,13 +10,17 @@ export class AppComponent extends Component {
   state = {
     user: null,
     info: null,
-    loading: true
+    loading: true,
+    categories: []
   }
 
   componentDidMount() {
     checkUser()
       .then(user => this.setState({ loading: false, user }))
       .catch(() => this.setState({ loading: false }));
+
+    getCategories()
+      .then(categories => this.setState({ categories }));
   }
 
   conponentDidUpdate(prevProps, prevState) {
@@ -38,8 +42,10 @@ export class AppComponent extends Component {
     const {
       user,
       info,
-      loading
+      loading,
+      categories
     } = this.state;
+
     const ConnectedHeader = withRouter(({ history }) => (
       <Header
         user={user}
@@ -47,6 +53,7 @@ export class AppComponent extends Component {
         onLogout={this.onLogout}
       />
     ));
+
     return (
       <>
         <ConnectedHeader />
@@ -56,7 +63,7 @@ export class AppComponent extends Component {
           onLogin={this.onLogin}
           loading={loading}
         >
-          <Pages user={user} info={info} onLogin={this.onLogin} />
+          <Pages user={user} info={info} onLogin={this.onLogin} categories={categories} />
         </Main>
         <Footer />
       </>
