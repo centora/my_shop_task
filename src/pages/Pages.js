@@ -49,16 +49,16 @@ export const Pages = ({
             key="products"
           />,
           <Route
-            path="/product"
-            exact
-            component={Product}
-            key="product"
-          />,
-          <Route
             path="/update"
             exact
             render={() => <h1>Update User Info!</h1>}
             key="update"
+          />,
+          <Route
+            path="/products/:id"
+            exact
+            component={Product}
+            key="product"
           />,
           <Redirect from="/signin" to="/" key="toHome" />
         ] : [
@@ -78,8 +78,19 @@ export const Pages = ({
             render={() => <h1>Success PAge</h1>}
             key="success"
           />,
-          <Redirect from="/contacts" to="/" key="contactsHome" />,
-          <Redirect from="/shop" to="/categories" key="shopCategories" />
+          <Route
+            path="/shop"
+            exact
+            render={() => <Categories categories={categories} />}
+            key="shop"
+          />,
+          <Route
+            path="/products/:id"
+            exact
+            render={({ match }) => <Product disabled match={match} />}
+            key="product"
+          />,
+          <Redirect from="/contacts" to="/home" key="contactsHome" />,
         ]
       }
       <Route

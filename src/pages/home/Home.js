@@ -6,9 +6,11 @@ class Home extends Component {
     info: null
   }
 
-  componentDidMount() {
-    getInfo()
-      .then(info => this.setState({ info }));
+  conponentDidUpdate(prevProps, prevState) {
+    if (!prevState.user && this.state.user) {
+      getInfo()
+        .then(info => this.setState({ info }));
+    }
   }
 
   render() {

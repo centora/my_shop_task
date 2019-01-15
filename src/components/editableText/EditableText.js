@@ -4,6 +4,7 @@ import './editableText.scss';
 export class EditableText extends Component {
   state = {
     editable: false,
+    disabled: this.props.disabled,
     editValue: this.props.text
   }
 
@@ -24,9 +25,9 @@ export class EditableText extends Component {
   }
 
   onChange = ({ target }) => {
-    this.setState({
-      editValue: target.value
-    });
+    this.setState(prevState => ({
+      editValue: this.props.disabled ? prevState.editValue : target.value
+    }));
   }
 
   renderEditableControl() {
@@ -36,7 +37,7 @@ export class EditableText extends Component {
       multirow
     } = this.props;
     const { onChange, updateText } = this;
-    const { editValue } = this.state;
+    const { editValue, disabled } = this.state;
     const editableControl = !multirow ? (
       <input
         autoFocus

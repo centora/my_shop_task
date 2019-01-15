@@ -21,7 +21,7 @@ export const Header = ({
       <Link to="/" className="logo">
         <img src="/images/logo.png" alt="Todo" />
       </Link>
-      <Nav list={['Home', 'Shop', 'Categories', 'Contacts']} />
+      <Nav list={['Home', user ? 'Categories' : 'Shop', 'Contacts']} />
       <div className="user-box">
         {
           user ? (
