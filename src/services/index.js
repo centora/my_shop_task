@@ -1,2 +1,2 @@
 export * from './user';
-export * from './categories';
+export { getInfo, getTasks } from './categories';

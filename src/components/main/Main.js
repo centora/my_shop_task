@@ -3,18 +3,6 @@ import Home from '../../pages/home';
 import { Tabs, Tab } from '../tabs';
 import './main.scss';
 
-export const renderContent = (user, onLogin) => (
-  <>
-    <div className="content">
-      {
-        user
-          ? <Home user={user} />
-          : <Login onLogin={onLogin} />
-      }
-    </div>
-  </>
-);
-
 export const Section = ({ children }) => (
   <section>{children && children.filter(child => child.type === 'p')}</section>
 );
@@ -37,7 +25,7 @@ export const Main = (
               {
                 user
                   ? <Home user={user} />
-                  : <renderContent user={user} onLogin={onLogin} />
+                  : <Login onLogin={onLogin} />
               }
               <Tabs selectedIndex={1}>
                 <Tab title="Tab 1">
