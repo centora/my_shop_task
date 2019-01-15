@@ -1,8 +1,13 @@
 import { withRouter } from 'react-router-dom';
+import {
+  checkUser,
+  getInfo,
+  getCategories,
+  getProducts
+} from 'services';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Main } from './components/main';
-import { checkUser, getInfo, getCategories } from './services';
 
 import { Pages } from './pages/Pages';
 
@@ -21,6 +26,9 @@ export class AppComponent extends Component {
 
     getCategories()
       .then(categories => this.setState({ categories }));
+
+    getProducts()
+      .then(products => this.setState({ products }));
   }
 
   conponentDidUpdate(prevProps, prevState) {
@@ -43,7 +51,8 @@ export class AppComponent extends Component {
       user,
       info,
       loading,
-      categories
+      categories,
+      products
     } = this.state;
 
     const ConnectedHeader = withRouter(({ history }) => (
@@ -63,7 +72,13 @@ export class AppComponent extends Component {
           onLogin={this.onLogin}
           loading={loading}
         >
-          <Pages user={user} info={info} onLogin={this.onLogin} categories={categories} />
+          <Pages
+            user={user}
+            info={info}
+            onLogin={this.onLogin}
+            categories={categories}
+            products={products}
+          />
         </Main>
         <Footer />
       </>

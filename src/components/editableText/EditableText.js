@@ -3,7 +3,7 @@ import './editableText.scss';
 
 export class EditableText extends Component {
   state = {
-    editable: false,
+    editable: this.props.editable,
     disabled: this.props.disabled,
     editValue: this.props.text
   }

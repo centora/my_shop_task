@@ -16,6 +16,7 @@ class Home extends Component {
   render() {
     const { user = {}, history } = this.props;
     const { info } = this.state;
+    console.log(info);
     return (
       <article className="invitation">
         {

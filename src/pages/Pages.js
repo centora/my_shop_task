@@ -11,7 +11,8 @@ export const Pages = ({
   user,
   onLogin,
   info,
-  categories
+  categories,
+  products
 }) => {
   const homePathes = ['/', '/home'];
   return (
@@ -45,7 +46,7 @@ export const Pages = ({
           <Route
             path="/products"
             exact
-            component={Products}
+            render={() => <Products products={products} />}
             key="products"
           />,
           <Route
