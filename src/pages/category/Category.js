@@ -12,6 +12,10 @@ export class Category extends Component {
       .then(category => this.setState({ category }));
   }
 
+  componentDidUpdate() {
+    console.log('component update');
+  }
+
   render() {
     const { category } = this.state;
     const { products } = category;
@@ -20,7 +24,7 @@ export class Category extends Component {
       <div>
         <div className="">
           <h1 className="main-title">Category {category.title}</h1>
-          <ul className="products-list">
+          <ul className="cat-products-list">
             {
               products && products.map(item => (
                 <li key={item.id}>

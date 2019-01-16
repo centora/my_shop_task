@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Nav } from '../navigation';
 import { logout } from '../../services';
 import './header.scss';
@@ -17,6 +17,7 @@ export const Header = ({
     });
   };
   return (
+
     <header className="header">
       <Link to="/" className="logo">
         <img src="/images/logo.png" alt="Todo" />

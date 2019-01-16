@@ -1,6 +1,6 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Login } from './login';
-import Home from './home';
+import { Home } from './home';
 import CreateUser from './createUser';
 import { Product } from './product';
 import { Products } from './products';
@@ -20,23 +20,23 @@ export const Pages = ({
       <Route
         path="/categories"
         exact
-        render={() => <Categories categories={categories} />}
+        component={Categories}
         key="categories"
       />
       <Route
         path="/categories/:id"
         exact
-        render={({ match }) => <Category categories={categories} match={match} />}
+        render={({ match }) => <Category match={match} />}
         key="category"
-      />
-      <Route
-        path={homePathes}
-        exact
-        render={({ history }) => <Home user={user} info={info} history={history} />}
-        key="home"
       />
       {
         user ? [
+          <Route
+            path={homePathes}
+            exact
+            render={({ history }) => <Home user={user} info={info} history={history} />}
+            key="home"
+          />,
           <Route
             path="/update"
             exact
@@ -82,7 +82,7 @@ export const Pages = ({
           <Route
             path="/shop"
             exact
-            render={() => <Categories categories={categories} />}
+            component={Categories}
             key="shop"
           />,
           <Route
@@ -90,6 +90,12 @@ export const Pages = ({
             exact
             render={({ match }) => <Product disabled match={match} />}
             key="product"
+          />,
+          <Route
+            path={homePathes}
+            exact
+            render={({ history }) => <Home history={history} />}
+            key="home"
           />,
           <Redirect from="/contacts" to="/home" key="contactsHome" />,
         ]

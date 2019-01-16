@@ -2,7 +2,6 @@ import { withRouter } from 'react-router-dom';
 import {
   checkUser,
   getInfo,
-  getCategories,
   getProducts
 } from 'services';
 import { Header } from './components/header';
@@ -16,22 +15,15 @@ export class AppComponent extends Component {
     user: null,
     info: null,
     loading: true,
-    categories: []
   }
 
   componentDidMount() {
     checkUser()
       .then(user => this.setState({ loading: false, user }))
       .catch(() => this.setState({ loading: false }));
-
-    getCategories()
-      .then(categories => this.setState({ categories }));
-
-    getProducts()
-      .then(products => this.setState({ products }));
   }
 
-  conponentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (!prevState.user && this.state.user) {
       getInfo()
         .then(info => this.setState({ info }));
@@ -51,14 +43,13 @@ export class AppComponent extends Component {
       user,
       info,
       loading,
-      categories,
-      products
     } = this.state;
 
     const ConnectedHeader = withRouter(({ history }) => (
       <Header
         user={user}
         info={info}
+        history={history}
         onLogout={this.onLogout}
       />
     ));
@@ -76,8 +67,6 @@ export class AppComponent extends Component {
             user={user}
             info={info}
             onLogin={this.onLogin}
-            categories={categories}
-            products={products}
           />
         </Main>
         <Footer />
