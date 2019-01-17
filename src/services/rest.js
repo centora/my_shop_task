@@ -11,9 +11,11 @@ const request = (url, options = {}, data) => {
     };
     settings.body = JSON.stringify(data);
   }
+  console.log(`${BASE_URL}${url}`, settings);
   return fetch(`${BASE_URL}${url}`, settings)
     .then(res => res.json())
     .then((data) => {
+      console.log(data);
       if (data.error) {
         throw data.error;
       }
@@ -27,6 +29,12 @@ const rest = {
   },
   post(url, data) {
     return request(url, { method: 'POST' }, data);
+  },
+  put(url, data) {
+    return request(url, { method: 'PUT' }, data);
+  },
+  delete(url, data) {
+    return request(url, { method: 'PUT' }, data);
   }
 };
 
