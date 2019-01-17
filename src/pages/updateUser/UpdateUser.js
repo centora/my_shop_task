@@ -6,7 +6,7 @@ export const UpdateUser = ({ user }) => {
   return (
     <>
       <h1>Update User</h1>
-      <UserForm user={user} />
+      <UserForm data={user} />
     </>
   );
 };
