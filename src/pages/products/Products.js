@@ -19,7 +19,9 @@ export class Products extends Component {
   onChange = ({ target }, id) => {
     this.setState((prevState) => {
       const updatedProducts = [...prevState.products];
-      updatedProducts.map(item => item.title = item.id === id ? target.value : item.title);
+      const editedProduct = updatedProducts.find(item => item.id === id);
+      editedProduct.title = target.value;
+      updatedProducts[editedProduct] = editedProduct;
       return { products: updatedProducts };
     });
   }
@@ -27,17 +29,21 @@ export class Products extends Component {
   saveItemOnBlur = (prodId) => {
     this.setState((prevState) => {
       const updatedProducts = [...prevState.products];
-      updatedProducts.map(item => item.editable = false);
+      const editedProduct = updatedProducts.find(item => item.id === prodId);
+      editedProduct.editable = false;
+      updatedProducts[editedProduct] = editedProduct;
       return { products: updatedProducts };
     });
-    const { id, price, title } = this.state.products.find(item => item.id === prodId);
+    const { price, title } = this.state.products.find(item => item.id === prodId);
     updateProduct(prodId, { title, price });
   }
 
   editItem = (id) => {
     this.setState((prevState) => {
       const updatedProducts = [...prevState.products];
-      updatedProducts.map(item => item.editable = item.id === id);
+      const editedProduct = updatedProducts.find(item => item.id === id);
+      editedProduct.editable = true;
+      updatedProducts[editedProduct] = editedProduct;
       return { products: updatedProducts };
     });
   }
