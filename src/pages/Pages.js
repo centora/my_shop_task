@@ -46,7 +46,7 @@ export const Pages = ({
           <Route
             path="/products"
             exact
-            render={() => <Products products={products} />}
+            component={Products}
             key="products"
           />,
           <Route
