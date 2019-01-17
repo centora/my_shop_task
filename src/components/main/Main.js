@@ -1,3 +1,4 @@
+import { Loader } from '../loader';
 import './main.scss';
 
 export const Main = (
@@ -9,7 +10,9 @@ export const Main = (
   <main className="main">
     {
       loading
-        ? 'Loding...'
+        ? (
+          <Loader show={loading} />
+        )
         : (
           <>
             <div className="content">
