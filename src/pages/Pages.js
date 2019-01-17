@@ -1,7 +1,8 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Login } from './login';
 import { Home } from './home';
-import CreateUser from './createUser';
+import { CreateUser } from './createUser';
+import { UpdateUser } from './updateUser';
 import { Product } from './product';
 import { Products } from './products';
 import { Categories } from './categories';
@@ -10,9 +11,7 @@ import { Category } from './category';
 export const Pages = ({
   user,
   onLogin,
-  info,
-  categories,
-  products
+  info
 }) => {
   const homePathes = ['/', '/home'];
   return (
@@ -60,6 +59,12 @@ export const Pages = ({
             exact
             component={Product}
             key="product"
+          />,
+          <Route
+            path="/profile"
+            exact
+            render={() => <UpdateUser user={user} />}
+            key="updateUser"
           />,
           <Redirect from="/signin" to="/" key="toHome" />
         ] : [
