@@ -24,17 +24,15 @@ export const Header = ({
       </Link>
       <Nav list={['Home', user ? 'Categories' : 'Shop', user ? 'Products' : 'Contacts']} />
       <div className="user-box">
-        {
-          user ? (
-            <>
-              <span>{user.firstName}</span>
-              {info && `(${info.categories}/${info.products})`}
-              <span><a href="#" onClick={onLogoutHandler}>Logout</a></span>
-            </>
-          ) : (
-            <Nav list={['Signin', 'Signup']} />
-          )
-        }
+        { user ? (
+          <>
+            <Link to="/profile">
+              <span>{user.firstName}</span> {info && `(${info.categories}/${info.products})`}
+            </Link> &nbsp; &nbsp;
+            <span><a href="#" onClick={onLogoutHandler}>Logout</a></span>
+          </>
+        ) : <Nav list={['Signin', 'Signup']} />
+}
       </div>
     </header>
   );

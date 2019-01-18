@@ -6,8 +6,7 @@ export class UserForm extends Component {
   static getDerivedStateFromProps({ data }, currentState) {
     if (!data) return null;
     const props = Object.entries(data);
-    const isStateEmpty = props.every(([key]) => !currentState[key].value);
-
+    const isStateEmpty = props.some(([key]) => currentState[key] && !currentState[key].value);
     if (isStateEmpty) {
       const state = {};
       props
@@ -22,8 +21,8 @@ export class UserForm extends Component {
 
     this.fields = [
       { label: 'email', reg: /^\w+@\w+\.[a-z]{2,}$/, placeholder: 'Enter your email' },
-      { label: 'name', reg: /^[^ ]{3,20}$/, placeholder: 'Enter your name' },
-      { label: 'surname', reg: /^[^ ]{3,20}$/, placeholder: 'Enter your surname' },
+      { label: 'firstName', reg: /^[^ ]{3,20}$/, placeholder: 'Enter your name' },
+      { label: 'lastName', reg: /^[^ ]{3,20}$/, placeholder: 'Enter your surname' },
       {
         label: 'password', reg: /^[^ ]{6,20}$/, secure: true, placeholder: 'Enter your password'
       },

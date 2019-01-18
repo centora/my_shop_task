@@ -2,7 +2,6 @@ import { withRouter } from 'react-router-dom';
 import {
   checkUser,
   getInfo,
-  getProducts
 } from 'services';
 import { Header } from './components/header';
 import { Footer } from './components/footer';
