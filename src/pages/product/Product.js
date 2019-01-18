@@ -9,8 +9,11 @@ export class Product extends Component {
   }
 
   componentDidMount() {
-    getProduct(this.props.match.params.id)
-      .then(product => this.setState({ product }));
+    const { id } = this.props.match.params;
+    if (id !== 'new') {
+      getProduct(id)
+        .then(product => this.setState({ product }));
+    }
   }
 
   onSubmit(e) {
