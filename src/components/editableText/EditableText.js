@@ -1,11 +1,10 @@
-import { Component } from 'react';
 import './editableText.scss';
 
 export class EditableText extends Component {
   state = {
     editable: this.props.editable,
     disabled: this.props.disabled,
-    editValue: this.props.text
+    editValue: this.props.text ? this.props.text : ''
   }
 
   editText = () => {
@@ -68,7 +67,7 @@ export class EditableText extends Component {
     return (
       <div className="editable-box" onClick={editText}>
         {
-          !editable ? (
+          !editable && editValue.length ? (
             <div className="editable-text">{editValue}</div>
           ) : this.renderEditableControl()
         }
