@@ -1,4 +1,8 @@
 @import "../../css/variables";
+.small-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
 
 .products {
   display: flex;
@@ -8,14 +12,25 @@
   background: $footerBgColor;
 }
 
+.filter-box {
+  margin-bottom: 15px;
+  input {
+    width: 200px;
+    height: 40px;
+    background: #fff;
+    border-radius: 3px;
+    border: 0;
+    padding: 0 10px;
+    font-size: inherit;
+  }
+}
+
 .products-list {
-  list-style: none;
-  margin: 0;
+  margin: 0 -10px 15px;
   padding: 0;
   display: flex;
   flex-flow: row wrap;
-  max-width: 680px;
-  margin: 0 auto;
+  list-style: none;
   .product-item {
     display: inline-block;
     width: calc(25% - 20px);
