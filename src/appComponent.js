@@ -1,15 +1,17 @@
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
-  checkUser,
   getInfo,
 } from 'services';
+import { checkUser } from './store/user';
+
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Main } from './components/main';
 
 import { Pages } from './pages/Pages';
 
-export class AppComponent extends Component {
+class AppComponent extends Component {
   state = {
     user: null,
     info: null,
@@ -17,9 +19,7 @@ export class AppComponent extends Component {
   }
 
   componentDidMount() {
-    checkUser()
-      .then(user => this.setState({ loading: false, user }))
-      .catch(() => this.setState({ loading: false }));
+    this.props.dispatch(checkUser());
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -73,3 +73,5 @@ export class AppComponent extends Component {
     );
   }
 }
+
+export default connect()(AppComponent);
