@@ -6,8 +6,8 @@ import {
 } from 'redux';
 
 import createSagaMiddleware from 'redux-saga';
-import { user } from './user';
 import { rootSaga } from './rootSaga';
+import { user } from './user';
 
 const rootReducers = combineReducers({
   user

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   getInfo,
 } from 'services';
-import { checkUser } from './store/user';
+import { check } from './store/user';
 
 import { Header } from './components/header';
 import { Footer } from './components/footer';
@@ -19,7 +19,7 @@ class AppComponent extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(checkUser());
+    this.props.dispatch(check());
   }
 
   componentDidUpdate(prevProps, prevState) {
