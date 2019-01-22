@@ -1,4 +1,5 @@
 import './userForm.scss';
+import { newUser } from 'services';
 
 export class UserForm extends Component {
   roles = ['Admin', 'User', 'Guest'];
