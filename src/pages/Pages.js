@@ -76,12 +76,12 @@ export const Pages = ({
           />,
           <Route
             path="/signup"
-            component={CreateUser}
+            render={({ history }) => <CreateUser history={history} />}
             key="signup"
           />,
           <Route
             path="/success"
-            render={() => <h1>Success PAge</h1>}
+            render={() => <h1 className="main-title">Congrats! New User was successfully created!</h1>}
             key="success"
           />,
           <Route
