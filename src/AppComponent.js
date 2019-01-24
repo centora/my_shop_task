@@ -13,9 +13,7 @@ import { Pages } from './pages/Pages';
 
 class AppComponent extends Component {
   state = {
-    user: null,
-    info: null,
-    loading: true,
+    info: null
   }
 
   componentDidMount() {
@@ -29,10 +27,6 @@ class AppComponent extends Component {
     }
   }
 
-  onLogin = (user) => {
-    this.setState({ user });
-  }
-
   onLogout = () => {
     this.setState({ user: null });
   }
@@ -41,7 +35,6 @@ class AppComponent extends Component {
     const {
       user,
       info,
-      loading,
     } = this.state;
 
     const ConnectedHeader = withRouter(({ history }) => (
@@ -56,16 +49,10 @@ class AppComponent extends Component {
     return (
       <>
         <ConnectedHeader />
-        <Main
-          user={user}
-          info={info}
-          onLogin={this.onLogin}
-          loading={loading}
-        >
+        <Main>
           <Pages
             user={user}
             info={info}
-            onLogin={this.onLogin}
           />
         </Main>
         <Footer />
@@ -74,4 +61,4 @@ class AppComponent extends Component {
   }
 }
 
-export default connect()(AppComponent);
+export default withRouter(connect()(AppComponent));

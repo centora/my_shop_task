@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Login } from './login';
+import Login from './login';
 import { Home } from './home';
 import { CreateUser } from './createUser';
 import { UpdateUser } from './updateUser';
@@ -10,7 +10,6 @@ import { Category } from './category';
 
 export const Pages = ({
   user,
-  onLogin,
   info
 }) => {
   const homePathes = ['/', '/home'];
@@ -71,7 +70,7 @@ export const Pages = ({
           <Route
             path="/signin"
             exact
-            render={() => <Login onLogin={onLogin} />}
+            component={Login}
             key="signin"
           />,
           <Route

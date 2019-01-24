@@ -14,12 +14,14 @@ const rootReducers = combineReducers({
 });
 
 // eslint-disable-next-line
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__|| compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
 
-export const store = createStore(
+const store = createStore(
   rootReducers,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);
+
+export default store;

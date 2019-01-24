@@ -1,18 +1,22 @@
-import 'babel-polyfill';
 import ReactDom from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import AppComponent from './appComponent';
-import { store } from './store';
+import 'babel-polyfill';
+import AppComponent from './AppComponent';
+import store from './store';
 
 import './css/app.scss';
 
 const App = (
   <Provider store={store}>
-    <Router>
+    <BrowserRouter>
       <AppComponent />
-    </Router>
+    </BrowserRouter>
   </Provider>
 );
+
+if (module.hot) {
+  module.hot.accept();
+}
 
 ReactDom.render(App, document.getElementById('app'));

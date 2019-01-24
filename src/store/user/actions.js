@@ -1,5 +1,5 @@
 export const LOGIN_USER = 'Login';
-export const login = () => ({ type: LOGIN_USER });
+export const login = data => ({ type: LOGIN_USER, data });
 
 export const CHECK_USER = 'Check user';
 export const check = () => ({ type: CHECK_USER });

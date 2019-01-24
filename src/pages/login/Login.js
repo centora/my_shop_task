@@ -1,7 +1,8 @@
-import { login } from '../../services';
+import { connect } from 'react-redux';
+import { login } from '../../store/user';
 import './login.scss';
-  
-export const Login = ({ onLogin }) => {
+
+const Login = ({ dispatch }) => {
   const onSubmit = (event) => {
     const { elements } = event.target;
     const data = {
@@ -9,7 +10,7 @@ export const Login = ({ onLogin }) => {
       password: elements.password.value
     };
 
-    login(data).then(onLogin);
+    dispatch(login(data));
 
     event.preventDefault();
   };
@@ -41,3 +42,5 @@ export const Login = ({ onLogin }) => {
     </form>
   );
 };
+
+export default connect()(Login);

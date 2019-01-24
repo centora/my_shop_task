@@ -19,7 +19,6 @@ export class Category extends Component {
   render() {
     const { category } = this.state;
     const { products } = category;
-    console.log(category);
     return (
       <div>
         <div className="">
