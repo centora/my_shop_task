@@ -8,9 +8,11 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './rootSaga';
 import { user } from './user';
+import { error } from './status';
 
 const rootReducers = combineReducers({
-  user
+  user,
+  error
 });
 
 // eslint-disable-next-line

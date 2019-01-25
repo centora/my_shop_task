@@ -27,7 +27,7 @@ function* loginSaga(action) {
 
 export function* watchUser() {
   yield all([
-    //takeEvery(CHECK_USER, check),
-    //takeEvery(LOGIN_USER, loginSaga),
+    takeEvery(CHECK_USER, check),
+    takeEvery(LOGIN_USER, loginSaga)
   ]);
 }
