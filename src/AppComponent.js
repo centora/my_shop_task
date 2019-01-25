@@ -1,9 +1,8 @@
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  getInfo,
-} from 'services';
+import { ToasterContainer } from 'react-toastr';
 import { check } from './store/user';
+import { getInfo } from './store/category';
 
 import { Header } from './components/header';
 import { Footer } from './components/footer';
@@ -12,43 +11,33 @@ import { Main } from './components/main';
 import { Pages } from './pages/Pages';
 
 class AppComponent extends Component {
-  state = {
-    info: null
-  }
-
   componentDidMount() {
     this.props.dispatch(check());
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevState.user && this.state.user) {
-      getInfo()
-        .then(info => this.setState({ info }));
+  componentDidUpdate(prevProps) {
+    if (!prevProps.user && this.props.user) {
+      this.props.dispatch(getInfo());
+    }
+
+    if (prevProps.user && !this.props.user) {
+      this.props.history.push('/');
     }
   }
 
   onLogout = () => {
-    this.setState({ user: null });
+    console.log('logout');
   }
 
   render() {
-    const {
-      user,
-      info,
-    } = this.state;
-
-    const ConnectedHeader = withRouter(({ history }) => (
-      <Header
-        user={user}
-        info={info}
-        history={history}
-        onLogout={this.onLogout}
-      />
-    ));
-
+    const { user, info } = this.props;
     return (
       <>
-        <ConnectedHeader />
+        <Header
+          user={user}
+          info={info}
+          onLogout={this.onLogout}
+        />
         <Main>
           <Pages
             user={user}
@@ -61,4 +50,10 @@ class AppComponent extends Component {
   }
 }
 
-export default withRouter(connect()(AppComponent));
+const mapState = state => ({
+  user: state.user,
+  info: state.info,
+  error: state.error,
+});
+
+export default withRouter(connect(mapState)(AppComponent));

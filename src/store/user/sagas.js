@@ -11,13 +11,8 @@ import {
 } from './actions';
 
 function* check() {
-  let user;
-  try {
-    user = yield checkUser();
-    yield put(setUser(user));
-  } catch (error) {
-    console.log(error);
-  }
+  const user = yield checkUser();
+  yield put(setUser(user));
 }
 
 function* loginSaga(action) {

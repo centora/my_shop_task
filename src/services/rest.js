@@ -1,7 +1,3 @@
-import store from '../store';
-
-import { setError } from '../store/status';
-
 const BASE_URL = 'http://localhost:8086/';
 
 const request = (url, options = {}, data) => {
@@ -15,7 +11,7 @@ const request = (url, options = {}, data) => {
     };
     settings.body = JSON.stringify(data);
   }
-  const req = fetch(`${BASE_URL}${url}`, settings)
+  return fetch(`${BASE_URL}${url}`, settings)
     .then(res => res.json())
     .then((data) => {
       if (data.error) {
@@ -23,9 +19,6 @@ const request = (url, options = {}, data) => {
       }
       return data;
     });
-  req.catch(error => store.dispatch(setError(error)));
-
-  return req;
 };
 
 const rest = {
