@@ -7,6 +7,7 @@ export function* rootSaga() {
   try {
     yield all([
       watchUser(),
+      watchCategory()
     ]);
   } catch (error) {
     yield put(setError(error));

@@ -1,8 +1,8 @@
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ToasterContainer } from 'react-toastr';
-import { check } from './store/user';
-import { getInfo } from './store/category';
+import { check, logout } from './store/user';
+import { cleanInfo, getInfo } from './store/category';
 
 import { Header } from './components/header';
 import { Footer } from './components/footer';
@@ -26,7 +26,8 @@ class AppComponent extends Component {
   }
 
   onLogout = () => {
-    console.log('logout');
+    this.props.dispatch(logout());
+    this.props.dispatch(cleanInfo());
   }
 
   render() {
