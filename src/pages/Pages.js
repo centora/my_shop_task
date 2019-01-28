@@ -12,7 +12,7 @@ export const Pages = ({
   user,
   info
 }) => {
-  const homePathes = ['/', '/home'];
+  const homePathes = '/(home)?';
   return (
     <Switch>
       <Route

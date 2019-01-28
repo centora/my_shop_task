@@ -1,6 +1,7 @@
 const BASE_URL = 'http://localhost:8086/';
 
 const request = (url, options = {}, data) => {
+  const isChecking = url.includes('checkUser');
   const settings = {
     credentials: 'include',
     ...options
@@ -11,6 +12,7 @@ const request = (url, options = {}, data) => {
     };
     settings.body = JSON.stringify(data);
   }
+  
   return fetch(`${BASE_URL}${url}`, settings)
     .then(res => res.json())
     .then((data) => {
