@@ -28,12 +28,6 @@ export const Pages = ({
         render={({ match }) => <Category match={match} />}
         key="category"
       />
-      <Route
-        path="/products/:id"
-        exact
-        component={Product}
-        key="product"
-      />
       {
         user ? [
           <Route
@@ -59,6 +53,12 @@ export const Pages = ({
             exact
             render={() => <h1>Update User Info!</h1>}
             key="update"
+          />,
+          <Route
+            path="/products/:id"
+            exact
+            component={Product}
+            key="product"
           />,
           <Route
             path="/profile"
