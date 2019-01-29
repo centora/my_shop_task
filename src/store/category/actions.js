@@ -12,3 +12,10 @@ export const setInfo = data => ({ type: SET_INFO, data });
 
 export const CLEAN_INFO = 'Clean category';
 export const cleanInfo = () => ({ type: CLEAN_INFO });
+
+export const GET_CATEGORY = 'Get Category';
+export const getCategory = data => ({ type: GET_CATEGORY, data });
+
+export const SET_CATEGORY = 'Set Category';
+export const setCategory = (data) => ({ type: SET_CATEGORY, data });
+

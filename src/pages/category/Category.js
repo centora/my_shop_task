@@ -1,6 +1,6 @@
 import './category.scss';
 import { Link } from 'react-router-dom';
-import { getCategory } from 'services';
+import { getCategory } from '../../store/category';
 
 export class Category extends Component {
   state = {
