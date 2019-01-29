@@ -3,9 +3,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import 'babel-polyfill';
 import AppComponent from './AppComponent';
-import store from './store';
+import { store, runSaga } from './store';
 
 import './css/app.scss';
+
+runSaga();
 
 const App = (
   <Provider store={store}>
