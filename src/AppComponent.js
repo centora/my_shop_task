@@ -47,6 +47,10 @@ class AppComponent extends Component {
           />
         </Main>
         <Footer />
+        {/*<ToastContainer
+          ref={ref => this.container = ref}
+          className="toast-top-right"
+        />*/}
       </>
     );
   }

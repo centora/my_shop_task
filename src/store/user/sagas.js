@@ -25,8 +25,12 @@ function* check() {
 }
 
 function* loginSaga(action) {
-  const user = yield login(action.data);
-  yield put(setUser(user));
+  try {
+    const user = yield login(action.data);
+    yield put(setUser(user));
+  } catch (err) {
+
+  }
 }
 
 function* logoutSaga() {
