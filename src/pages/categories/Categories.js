@@ -1,30 +1,40 @@
-import './categories.scss';
-import { Link } from 'react-router-dom';
-import { checkUser, getCategories, getProducts } from 'services';
+import { connect } from 'react-redux';
+import ControlItems from 'components/controlItems';
+import { getCategories, updateCategories } from '../../store/category';
 
-export class Categories extends Component {
-  state = {
-    categories: []
+const isPublished = category => category.published;
+const notPublished = category => !category.published;
+
+class Categories extends Component {
+  componentDidMount() {
+    this.props.dispatch(getCategories());
   }
 
-  componentDidMount() {
-    getCategories()
-      .then(categories => this.setState({ categories }));
+  updateCategories = (title, id) => {
+    const category = this.props.categories.find(category => category.id === id);
+    category.title = title;
+
+    this.props.dispatch(updateCategories(category));
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories } = this.props;
+
     return (
-      <div>
-        <div className="published-categories">
-          <h1 className="main-title">Categories</h1>
-          <ul className="categories-list">
-            {
-              categories.map(item => <li key={item.id}><Link to={`categories/${item.id}`}>{item.title}</Link></li>)
-            }
-          </ul>
-        </div>
-      </div>
+      <section>
+        <h1>Categories</h1>
+        <ControlItems
+          leftItems={categories.filter(isPublished)}
+          rightItems={categories.filter(notPublished)}
+          onChangeLeftItem={this.updateCategories}
+        />
+      </section>
     );
   }
 }
+
+const mapState = state => ({
+  categories: state.categories
+});
+
+export default connect(mapState)(Categories);
