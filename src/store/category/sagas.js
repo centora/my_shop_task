@@ -4,13 +4,13 @@ import {
   all
 } from 'redux-saga/effects';
 
-import { getInfo, getCategory } from 'services';
+import { getInfo, getCategory, getCategories } from 'services';
 
 import {
   GET_INFO,
   setInfo,
   GET_CATEGORY,
-  setCategory,
+  GET_CATEGORIES,
 } from './actions';
 
 
@@ -19,14 +19,18 @@ function* info() {
   yield put(setInfo(info));
 }
 
-function* category() {
-  const category = yield getCategory(action.data);
-  yield put(setCategory(category));
+function* category(action) {
+  yield getCategory(action.data);
+}
+
+function* categories() {
+  yield getCategories();
 }
 
 export function* watchCategory() {
   yield all([
     takeEvery(GET_INFO, info),
     takeEvery(GET_CATEGORY, category),
+    takeEvery(GET_CATEGORIES, categories),
   ]);
 }

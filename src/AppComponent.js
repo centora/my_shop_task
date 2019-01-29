@@ -31,7 +31,7 @@ class AppComponent extends Component {
   }
 
   render() {
-    const { user, info } = this.props;
+    const { user, info, products } = this.props;
     return (
       <>
         <Header
@@ -43,6 +43,7 @@ class AppComponent extends Component {
           <Pages
             user={user}
             info={info}
+            products={products}
           />
         </Main>
         <Footer />
@@ -55,6 +56,8 @@ const mapState = state => ({
   user: state.user,
   info: state.info,
   error: state.error,
+  products: state.products,
+  category: state.category,
 });
 
 export default withRouter(connect(mapState)(AppComponent));

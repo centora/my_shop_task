@@ -1,15 +1,15 @@
-import './category.scss';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getCategory } from '../../store/category';
+import './category.scss';
 
 export class Category extends Component {
-  state = {
-    category: {}
-  }
-
   componentDidMount() {
-    getCategory(this.props.match.params.id)
-      .then(category => this.setState({ category }));
+    //this.props.dispatch(getCategory({}));
+   /* const { category } = this.state;
+    const { products } = category;
+    const product = products.find(item => item.id === this.props.match.params.id);
+    */
   }
 
   componentDidUpdate() {
@@ -17,11 +17,10 @@ export class Category extends Component {
   }
 
   render() {
-    const { category } = this.state;
-    const { products } = category;
+    console.log(this.props);
     return (
       <div>
-        <div className="">
+        {/*<div className="">
           <h1 className="main-title">Category {category.title}</h1>
           <ul className="cat-products-list">
             {
@@ -32,7 +31,7 @@ export class Category extends Component {
               ))
             }
           </ul>
-        </div>
+        </div>*/}
       </div>
     );
   }

@@ -5,13 +5,15 @@ import { CreateUser } from './createUser';
 import { UpdateUser } from './updateUser';
 import { Product } from './product';
 import { Products } from './products';
-import { Categories } from './categories';
+import Categories from './categories';
 import { Category } from './category';
 import Start from './start';
 
 export const Pages = ({
   user,
-  info
+  info,
+  products,
+  category
 }) => {
   const homePathes = '/(home)?';
   return (
@@ -25,7 +27,7 @@ export const Pages = ({
       <Route
         path="/categories/:id"
         exact
-        render={({ match }) => <Category match={match} />}
+        render={() => <Category category={category} products={products} />}
         key="category"
       />
       {
@@ -33,7 +35,7 @@ export const Pages = ({
           <Route
             path={homePathes}
             exact
-            render={({ history }) => <Home user={user} info={info} history={history} />}
+            render={() => <Home user={user} info={info} />}
             key="home"
           />,
           <Route
@@ -57,7 +59,7 @@ export const Pages = ({
           <Route
             path="/products/:id"
             exact
-            component={Product}
+            render={() => <Product category={category} products={products}/>}
             key="product"
           />,
           <Route

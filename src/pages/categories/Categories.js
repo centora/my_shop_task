@@ -1,19 +1,18 @@
+import { connect } from 'react-redux';
 import './categories.scss';
-import { Link } from 'react-router-dom';
-import { checkUser, getCategories, getProducts } from 'services';
+import { Link, withRouter } from 'react-router-dom';
+import { getCategories } from '../../store/category';
 
-export class Categories extends Component {
-  state = {
-    categories: []
-  }
-
+class Categories extends Component {
   componentDidMount() {
-    getCategories()
-      .then(categories => this.setState({ categories }));
+    this.props.dispatch(getCategories());
+    /*getCategories()
+      .then(categories => this.setState({ categories }));*/
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories } = this.props;
+    console.log(categories);
     return (
       <div>
         <div className="published-categories">
@@ -28,3 +27,9 @@ export class Categories extends Component {
     );
   }
 }
+
+const mapState = state => ({
+  categories: state.categories
+});
+
+export default connect(mapState)(Categories);
