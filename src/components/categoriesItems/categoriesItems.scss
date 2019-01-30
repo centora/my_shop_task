@@ -1,1 +1,36 @@
 @import "../../css/variables";
+
+.categories-items{
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    margin: 0 0 10px;
+    font-weight: normal;
+    font-size: 18px;
+  }
+
+  .categories-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.unpublished-categories {
+  border: 1px solid #fff;
+
+  .filter-box {
+    margin: 0;
+  }
+
+  ul {
+    li {
+      border-bottom: 1px solid #fff;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+  }
+}
