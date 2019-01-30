@@ -1,19 +1,19 @@
 import './controlItems.scss';
 import { EditableText as InputText} from 'components/editableText';
 
-export class ControlItems extends Component {
+export class CategoriesItems extends Component {
   render () {
     const {
-      leftItems,
-      rightItems,
+      publishedItems,
+      unpublishedItems,
       onChangeLeftItem,
     } = this.props;
 
     return (
       <div className="control-items">
-        <ul>
+        <ul className="categories-list">
           {
-            leftItems.map(({ title, id }) => {
+            publishedItems.map(({ title, id }) => {
               return (
                 <li key={id}>
                   <InputText
@@ -26,9 +26,9 @@ export class ControlItems extends Component {
           }
         </ul>
 
-        <ul>
+        <ul className="categories-list">
           {
-            rightItems.map(({ title, id }) => {
+            unpublishedItems.map(({ title, id }) => {
               return <li key={id}>{title}</li>;
             })
           }

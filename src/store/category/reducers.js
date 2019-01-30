@@ -29,7 +29,7 @@ export const category = (state = categoryInitial, action) => {
 export const categories = (state = categoriesInitial, action) => {
   switch (action.type) {
     case GET_CATEGORIES: {
-      return action.data;
+      return state;
     }
     case SET_CATEGORIES: {
       return action.data;

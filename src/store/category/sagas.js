@@ -7,7 +7,7 @@ import {
 import {
   getInfo,
   updateCategory as updateCategoryService,
-  getCategories
+  getCategories as getCategoriesService
 } from 'services';
 
 import {
@@ -17,19 +17,25 @@ import {
   GET_CATEGORIES,
   UPDATE_CATEGORIES,
   setCategories,
+  getCategories,
 } from './actions';
 
 function* info() {
-  const info = yield getInfo();
-  yield put(setInfo(info));
+  try {
+    const info = yield getInfo();
+    yield put(setInfo(info));
+
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 function* fetchCategories() {
   try {
-    const categories = yield getCategories();
+    const categories = yield getCategoriesService();
     yield put(setCategories(categories));
   } catch (err) {
-    console.log(error);
+    console.log(err);
   }
 }
 
@@ -39,7 +45,7 @@ function* putCategory({ data }) {
     yield put(updateCategoryService(category));
     yield put(getCategories())
   } catch (err) {
-    console.log(error);
+    console.log(err);
   }
 }
 
@@ -47,6 +53,5 @@ export function* watchCategory() {
   yield all([
     takeEvery(GET_INFO, info),
     takeEvery(GET_CATEGORIES, fetchCategories),
-    takeEvery(UPDATE_CATEGORIES, putCategory),
   ]);
 }

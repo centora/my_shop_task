@@ -9,13 +9,14 @@ import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './rootSaga';
 import { user } from './user';
 import { error } from './status';
-import { info, category } from './category';
+import { info, category, categories } from './category';
 
 const rootReducers = combineReducers({
   category,
   user,
   info,
   error,
+  categories
 });
 
 

@@ -1,7 +1,10 @@
 import { rest } from './rest';
 
 const getInfo = () => rest.get('shop_info');
-const getCategories = () => rest.get('public/categories');
+const getCategories = () => {
+  console.log('I am service');
+  return rest.get('public/categories');
+}
 const getCategory = id => rest.get(`public/categories/${id}`);
 
 export const updateCategory = category => rest.put(`categories/${category.id}`, category);
