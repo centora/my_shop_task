@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ControlItems from 'components/controlItems';
-import { getCategories, updateCategories } from '../../store/category';
+import { ControlItems } from 'components/controlItems';
+import { getCategories } from '../../store/category';
 
 const isPublished = category => category.published;
 const notPublished = category => !category.published;
@@ -19,7 +19,6 @@ class Categories extends Component {
 
   render() {
     const { categories } = this.props;
-
     return (
       <section>
         <h1>Categories</h1>

@@ -5,7 +5,7 @@ import { CreateUser } from './createUser';
 import { UpdateUser } from './updateUser';
 import { Product } from './product';
 import { Products } from './products';
-import { Categories } from './categories';
+import Categories from './categories';
 import { Category } from './category';
 import Start from './start';
 

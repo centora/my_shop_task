@@ -9,8 +9,14 @@ import { Footer } from './components/footer';
 import { Main } from './components/main';
 
 import { Pages } from './pages/Pages';
+import { Modal } from 'components/modal';
 
 class AppComponent extends Component {
+
+  state = {
+    showModal: false
+  }
+
   componentDidMount() {
     this.props.dispatch(check());
   }
@@ -30,6 +36,19 @@ class AppComponent extends Component {
     this.props.dispatch(cleanInfo());
   }
 
+  onOpenModal = () => {
+    this.setState({showModal: true})
+  }
+
+  onHideModal = () => {
+    this.setState({showModal: false})
+  }
+
+  onOk = () => {
+    console.log('removing ...');
+    this.setState({showModal: false})
+  }
+
   render() {
     const { user, info, products } = this.props;
     return (
@@ -46,11 +65,19 @@ class AppComponent extends Component {
             products={products}
           />
         </Main>
+        <button onClick={this.onOpenModal}>Open Modal</button>
         <Footer />
+
         {/*<ToastContainer
           ref={ref => this.container = ref}
           className="toast-top-right"
         />*/}
+        <Modal
+          isOpen={this.state.showModal}
+          close={this.onHideModal}
+          success={this.onOk}
+          text="Some warning was happend when you tried to delete category"
+        />
       </>
     );
   }

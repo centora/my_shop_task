@@ -16,9 +16,16 @@ export const cleanInfo = () => ({ type: CLEAN_INFO });
 export const GET_CATEGORIES = 'Get Categories';
 export const getCategories = () => ({ type: GET_CATEGORIES });
 
+export const UPDATE_CATEGORIES = 'Update Categories';
+export const updateCategories = (data) => ({ type: UPDATE_CATEGORIES, data });
+
+export const SET_CATEGORIES = 'Set Categories';
+export const setCategories = () => ({ type: SET_CATEGORIES });
+
 export const GET_CATEGORY = 'Get Category';
 export const getCategory = data => ({ type: GET_CATEGORY, data });
 
 export const SET_CATEGORY = 'Set Category';
 export const setCategory = (data) => ({ type: SET_CATEGORY, data });
+
 

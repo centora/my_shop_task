@@ -1,7 +1,7 @@
 import './controlItems.scss';
 import { EditableText as InputText} from 'components/editableText';
 
-class ControlItems extends Component {
+export class ControlItems extends Component {
   render () {
     const {
       leftItems,
@@ -38,4 +38,3 @@ class ControlItems extends Component {
   }
 }
 
-export default ControlItems;

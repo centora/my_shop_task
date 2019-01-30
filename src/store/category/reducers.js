@@ -1,4 +1,12 @@
-import { SET_INFO, CLEAN_INFO } from './actions';
+import {
+  SET_INFO,
+  CLEAN_INFO,
+  GET_CATEGORY,
+  SET_CATEGORY,
+  GET_CATEGORIES,
+  UPDATE_CATEGORIES,
+  SET_CATEGORIES,
+} from './actions';
 import {
   category as categoryInitial,
   info as infoInitial,
@@ -7,7 +15,10 @@ import {
 
 export const category = (state = categoryInitial, action) => {
   switch (action.type) {
-    case 'default': {
+    case GET_CATEGORY: {
+      return action.data;
+    }
+    case SET_CATEGORY: {
       return action.data;
     }
   }
@@ -17,7 +28,13 @@ export const category = (state = categoryInitial, action) => {
 
 export const categories = (state = categoriesInitial, action) => {
   switch (action.type) {
-    case 'default': {
+    case GET_CATEGORIES: {
+      return action.data;
+    }
+    case SET_CATEGORIES: {
+      return action.data;
+    }
+    case UPDATE_CATEGORIES: {
       return action.data;
     }
   }
