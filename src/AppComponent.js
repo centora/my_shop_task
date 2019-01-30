@@ -2,7 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ToasterContainer } from 'react-toastr';
 import { check, logout } from './store/user';
-import { cleanInfo, getInfo } from './store/category';
+import { cleanInfo, getInfo } from './store/categories';
 
 import { Header } from './components/header';
 import { Footer } from './components/footer';

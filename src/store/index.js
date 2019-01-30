@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './rootSaga';
 import { user } from './user';
 import { error } from './status';
-import { info, category, categories } from './category';
+import { info, category, categories } from './categories';
 
 const rootReducers = combineReducers({
   category,

@@ -13,7 +13,6 @@ import {
 import {
   GET_INFO,
   setInfo,
-  updateCategories,
   GET_CATEGORIES,
   UPDATE_CATEGORIES,
   setCategories,
@@ -41,8 +40,7 @@ function* fetchCategories() {
 
 function* putCategory({ data }) {
   try {
-    const category = yield updateCategories(data);
-    yield put(updateCategoryService(category));
+    yield updateCategoryService(data);
     yield put(getCategories())
   } catch (err) {
     console.log(err);
@@ -53,5 +51,6 @@ export function* watchCategory() {
   yield all([
     takeEvery(GET_INFO, info),
     takeEvery(GET_CATEGORIES, fetchCategories),
+    takeEvery(UPDATE_CATEGORIES, putCategory),
   ]);
 }

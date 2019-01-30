@@ -8,9 +8,8 @@ export class CategoriesItems extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
     this.setState({
-      filteredItems: this.props.unpublishedItems
+      filteredItems: nextProps.unpublishedItems
     });
   }
 
@@ -34,7 +33,7 @@ export class CategoriesItems extends Component {
   render () {
     const {
       publishedItems,
-      unpublishedItems,
+      publishCategoryHandler,
       onChangeLeftItem,
     } = this.props;
     const { filterValue, filteredItems } = this.state;
@@ -73,7 +72,14 @@ export class CategoriesItems extends Component {
             <ul className="categories-list">
               {
                 filteredItems.map(({ title, id }) => {
-                  return <li key={id}>{title}</li>;
+                  return (
+                    <li
+                      key={id}
+                      onDoubleClick={() => publishCategoryHandler(id)}
+                    >
+                      {title}
+                    </li>
+                  );
                 })
               }
             </ul>

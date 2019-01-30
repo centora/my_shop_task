@@ -1,6 +1,6 @@
 import './category.scss';
-import { Link } from 'react-router-dom';
 import { getCategory } from 'services';
+import { CategoriesItems } from 'components/categoriesItems';
 
 export class Category extends Component {
   state = {
@@ -16,6 +16,10 @@ export class Category extends Component {
     console.log('component update');
   }
 
+  updateCategories () {
+    console.log('update');
+  }
+
   render() {
     const { category } = this.state;
     const { products } = category;
@@ -23,15 +27,12 @@ export class Category extends Component {
       <div>
         <div className="">
           <h1 className="main-title">Category {category.title}</h1>
-          <ul className="cat-products-list">
-            {
-              products && products.map(item => (
-                <li key={item.id}>
-                  <Link to={`/products/${item.id}`}>{item.title}</Link>
-                </li>
-              ))
-            }
-          </ul>
+          <CategoriesItems
+            publishedItems={categories.filter(isPublished)}
+            unpublishedItems={categories.filter(notPublished)}
+            onChangeLeftItem={this.updateCategories}
+            publishCategoryHandler={this.publishCategory}
+          />
         </div>
       </div>
     );
