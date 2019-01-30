@@ -1,4 +1,4 @@
-import './controlItems.scss';
+import './categoriesItems.scss';
 import { EditableText as InputText} from 'components/editableText';
 
 export class CategoriesItems extends Component {
