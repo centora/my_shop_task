@@ -11,7 +11,7 @@ import { Main } from './components/main';
 import { Pages } from './pages/Pages';
 import { Modal } from 'components/modal';
 
-class AppComponent extends Component {
+export class AppComponent extends Component {
 
   state = {
     showModal: false

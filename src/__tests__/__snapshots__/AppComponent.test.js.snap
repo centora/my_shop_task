@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppComponent/> should match to snapshot 1`] = `
+<Fragment>
+  <Header
+    onLogout={[Function]}
+  />
+  <Main>
+    <Pages />
+  </Main>
+  <button
+    onClick={[Function]}
+  >
+    Open Modal
+  </button>
+  <Footer />
+  <Modal
+    close={[Function]}
+    isOpen={false}
+    success={[Function]}
+    text="Some warning was happend when you tried to delete category"
+  />
+</Fragment>
+`;
