@@ -27,5 +27,3 @@ export const getCategory = data => ({ type: GET_CATEGORY, data });
 
 export const SET_CATEGORY = 'Set Category';
 export const setCategory = data => ({ type: SET_CATEGORY, data });
-
-

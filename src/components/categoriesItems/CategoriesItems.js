@@ -1,16 +1,38 @@
 import './categoriesItems.scss';
 import { EditableText as InputText} from 'components/editableText';
+import { Modal } from 'components/modal';
 
 export class CategoriesItems extends Component {
   state = {
     filterValue: '',
-    filteredItems: [],
+    itemId: '',
+    editId: '',
+  }
+
+  onDelete = (itemId) => {
+    this.setState({itemId});
+  }
+
+  onClose = () => {
+    this.props.removeItem(this.state.itemId);
+  }
+
+  onOk = () => {
+    console.log('removing...', this.state.itemId);
+    this.props.removeItem(this.state.itemId);
+  }
+
+  onEdit = (editId) => {
+    this.setState({ editId });
+  }
+
+  onInputOut(title, id) {
+    this.props.onChangeLeftItem(title, id);
+    this.setState({ editId: '' });
   }
 
   componentWillReceiveProps(nextProps){
-    this.setState({
-      filteredItems: nextProps.unpublishedItems
-    });
+
   }
 
   onChangeFilter = ({ target }) => {
@@ -21,38 +43,45 @@ export class CategoriesItems extends Component {
   }
 
   filterCategories = (value) => {
-    let filteredItems = this.props.unpublishedItems;
-    filteredItems = filteredItems
-      .filter(item => item.title.toLowerCase().includes(value.toLowerCase()));
-
-    this.setState({
-      filteredItems
-    });
+    console.log(value);
   }
 
-  render () {
+  render() {
     const {
       publishedItems,
-      publishCategoryHandler,
-      onChangeLeftItem,
+      unpublishedItems,
+      addItem
     } = this.props;
-    const { filterValue, filteredItems } = this.state;
+    const { filterValue, itemId, editId } = this.state;
+
     return (
       <div className="categories-items">
         <div className="categories-container">
           <h3>Published categories</h3>
           <ul className="categories-list">
             {
-              publishedItems.map(({ title, id }) => {
-                return (
-                  <li key={id}>
-                    <InputText
-                      text={title}
-                      onOut={title => onChangeLeftItem(title, id)}
-                    />
-                  </li>
-                );
-              })
+              publishedItems.map(({ title, id }) => (
+                <li key={id}>
+                  <InputText
+                    text={title}
+                    onOut={title => this.onInputOut(title, id)}
+                    active={id === editId}
+                    onClick={() => this.props.history.push(`/categories/$id`)}
+                  />
+                  <span
+                    style={{ marginLeft: '10px', color: 'red' }}
+                    onClick={() => this.onDelete(id)}
+                  >
+                    X
+                  </span>
+                  <span
+                    style={{ marginLeft: '10px', color: 'red' }}
+                    onClick={() => this.onEdit(id)}
+                  >
+                   V
+                  </span>
+                </li>
+              ))
             }
           </ul>
         </div>
@@ -71,22 +100,25 @@ export class CategoriesItems extends Component {
             </div>
             <ul className="categories-list">
               {
-                filteredItems.map(({ title, id }) => {
-                  return (
-                    <li
-                      key={id}
-                      onDoubleClick={() => publishCategoryHandler(id)}
-                    >
-                      {title}
-                    </li>
-                  );
-                })
+                unpublishedItems.map(({ title, id }) => (
+                  <li
+                    key={id}
+                    onDoubleClick={() => addItem(id)}
+                  >
+                    {title}
+                  </li>
+                ))
               }
             </ul>
           </div>
         </div>
+        <Modal
+          isOpen={Boolean(itemId)}
+          close={this.onClose}
+          success={this.onOk}
+          text="You are going to unpublish category"
+        />
       </div>
     );
   }
 }
-
