@@ -1,5 +1,5 @@
 import './category.scss';
-import { getCategory } from 'services';
+import { getCategory } from '../../store/category';
 import { CategoriesItems } from 'components/categoriesItems';
 
 export class Category extends Component {
@@ -23,16 +23,20 @@ export class Category extends Component {
   render() {
     const { category } = this.state;
     const { products } = category;
+    console.log(category);
     return (
       <div>
         <div className="">
           <h1 className="main-title">Category {category.title}</h1>
-          <CategoriesItems
-            publishedItems={categories.filter(isPublished)}
-            unpublishedItems={categories.filter(notPublished)}
-            onChangeLeftItem={this.updateCategories}
-            publishCategoryHandler={this.publishCategory}
-          />
+          <ul className="cat-products-list">
+            {
+              products && products.map(item => (
+                <li key={item.id}>
+                  <Link to={`/products/${item.id}`}>{item.title}</Link>
+                </li>
+              ))
+            }
+          </ul>
         </div>
       </div>
     );

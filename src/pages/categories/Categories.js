@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { CategoriesItems } from 'components/categoriesItems';
 import { getCategories, updateCategories } from '../../store/categories';
+import { Link } from 'react-router-dom';
 
 const isPublished = category => category.published;
 const notPublished = category => !category.published;
@@ -32,25 +33,38 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories, history } = this.props;
+    const { categories, history, user } = this.props;
+
     return (
       <section>
         <h1 className="main-title">Categories</h1>
-        <CategoriesItems
-          publishedItems={categories.filter(isPublished)}
-          unpublishedItems={categories.filter(notPublished)}
-          onChangeLeftItem={this.updateCategories}
-          removeItem={this.unpublishCategory}
-          addItem={this.publishCategory}
-          history={history}
-        />
+        { user ? (
+          <CategoriesItems
+            publishedItems={categories.filter(isPublished)}
+            unpublishedItems={categories.filter(notPublished)}
+            onChangeLeftItem={this.updateCategories}
+            removeItem={this.unpublishCategory}
+            addItem={this.publishCategory}
+            history={history}
+          />
+        ) : (
+          <ul className="categories-list">
+            {
+              categories.map(item => (
+                <li key={item.id}><Link to={`categories/${item.id}`}>{item.title}</Link></li>
+              ))
+            }
+          </ul>
+        )}
+
       </section>
     );
   }
 }
 
 const mapState = state => ({
-  categories: state.categories
+  categories: state.categories,
+  user: state.user
 });
 
 export default connect(mapState)(Categories);

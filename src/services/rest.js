@@ -4,6 +4,7 @@ import { setError } from '../store/status';
 const BASE_URL = 'http://localhost:8086/';
 
 const request = (url, options = {}, data) => {
+  const isUserChecking = url.includes('checkUser');
   const settings = {
     credentials: 'include',
     ...options
@@ -23,7 +24,7 @@ const request = (url, options = {}, data) => {
       }
       return data;
     });
-  req.catch(err => store.dispatch(setError(err)));
+  req.catch(error => !isUserChecking && store.dispatch(setError(String(error))));
   return req;
 };
 

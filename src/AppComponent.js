@@ -1,15 +1,15 @@
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ToasterContainer } from 'react-toastr';
+import { ToastContainer } from 'react-toastr';
 import { check, logout } from './store/user';
 import { cleanInfo, getInfo } from './store/categories';
+import { cleanError } from './store/status';
 
 import { Header } from './components/header';
 import { Footer } from './components/footer';
 import { Main } from './components/main';
 
 import { Pages } from './pages/Pages';
-import { Modal } from 'components/modal';
 
 export class AppComponent extends Component {
 
@@ -29,24 +29,20 @@ export class AppComponent extends Component {
     if (prevProps.user && !this.props.user) {
       this.props.history.push('/');
     }
+
+    if (!prevProps.error && this.props.error) {
+      this.container.error(
+        'Some error happens',
+        'Error!'
+      );
+      this.props.dispatch(cleanError());
+    }
+
   }
 
   onLogout = () => {
     this.props.dispatch(logout());
     this.props.dispatch(cleanInfo());
-  }
-
-  onOpenModal = () => {
-    this.setState({showModal: true})
-  }
-
-  onHideModal = () => {
-    this.setState({showModal: false})
-  }
-
-  onOk = () => {
-    console.log('removing ...');
-    this.setState({showModal: false})
   }
 
   render() {
@@ -65,18 +61,11 @@ export class AppComponent extends Component {
             products={products}
           />
         </Main>
-        <button onClick={this.onOpenModal}>Open Modal</button>
         <Footer />
 
-        {/*<ToastContainer
+        <ToastContainer
           ref={ref => this.container = ref}
           className="toast-top-right"
-        />*/}
-        <Modal
-          isOpen={this.state.showModal}
-          close={this.onHideModal}
-          success={this.onOk}
-          text="Some warning was happend when you tried to delete category"
         />
       </>
     );

@@ -13,8 +13,8 @@ import {
 import {
   GET_INFO,
   setInfo,
-  GET_CATEGORIES,
   UPDATE_CATEGORIES,
+  GET_CATEGORIES,
   setCategories,
   getCategories,
 } from './actions';
