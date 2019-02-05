@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { getCategory } from '../../store/category';
 import { getProducts } from '../../store/products';
+import { Link } from 'react-router-dom';
 import './category.scss';
-import { CategoriesItems } from 'components/categoriesItems';
 
 class Category extends Component {
   componentDidMount() {
@@ -20,12 +20,10 @@ class Category extends Component {
 
   render() {
     const { category, history, products } = this.props;
-    console.log(this.props);
-    console.log(category);
     return (
       <div>
-        {/*<div className="">
-          <h1 className="main-title">Category {category.title}</h1>
+        <div className="">
+          { category && <h1 className="main-title">Category {category.title}</h1> }
           <ul className="cat-products-list">
             {
               products && products.map(item => (
@@ -35,7 +33,7 @@ class Category extends Component {
               ))
             }
           </ul>
-        </div>*/}
+        </div>
       </div>
     );
   }

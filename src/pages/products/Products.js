@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 import { getProducts, updateProduct } from 'services';
 import './products.scss';
+import connect from 'react-redux/es/connect/connect';
 
-export class Products extends Component {
+class Products extends Component {
   state = {
-    products: [],
     filterValue: ''
   }
 
   componentDidMount() {
+
     getProducts()
       .then((products) => {
         this.originProducts = products;
@@ -79,7 +80,8 @@ export class Products extends Component {
   }
 
   render() {
-    const { products, filterValue } = this.state;
+    const { filterValue } = this.state;
+    const { user, products } = this.props;
     return (
       <div className="small-container">
         <h1 className="main-title">Products</h1>
@@ -121,8 +123,15 @@ export class Products extends Component {
             ))
           }
         </ul>
-        <button onClick={e => this.addNewProduct(e)}>Add new</button>
+        { user && <button onClick={e => this.addNewProduct(e)}>Add new</button> }
       </div>
     );
   }
 }
+
+const mapState = state => ({
+  products: state.products,
+  user: state.user
+});
+
+export default connect(mapState)(Products);
