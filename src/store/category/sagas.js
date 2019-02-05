@@ -58,7 +58,6 @@ function* removeCategory({ data }) {
 
 export function* watchCategory() {
   yield all([
-    takeEvery(GET_INFO, info),
     takeEvery(GET_CATEGORY, fetchCategory),
     takeEvery(CREATE_NEW_CATEGORY, newCategory),
     takeEvery(UPDATE_CATEGORY, putCategory),

@@ -47,7 +47,7 @@ function* putCategory({ data }) {
   }
 }
 
-export function* watchCategory() {
+export function* watchCategories() {
   yield all([
     takeEvery(GET_INFO, info),
     takeEvery(GET_CATEGORIES, fetchCategories),

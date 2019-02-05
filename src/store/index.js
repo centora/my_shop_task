@@ -10,12 +10,14 @@ import { rootSaga } from './rootSaga';
 import { user } from './user';
 import { error } from './status';
 import { info, categories } from './categories';
+import { category } from './category';
 
 const rootReducers = combineReducers({
   user,
   info,
   error,
-  categories
+  categories,
+  category
 });
 
 
