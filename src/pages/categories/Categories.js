@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { CategoriesItems } from 'components/categoriesItems';
-import { getCategories, updateCategories } from '../../store/categories';
 import { Link } from 'react-router-dom';
+import { getCategories, updateCategories } from '../../store/categories';
+import { CategoriesItems } from 'components/categoriesItems';
 
 const isPublished = category => category.published;
 const notPublished = category => !category.published;
@@ -16,6 +16,7 @@ class Categories extends Component {
     category.title = title;
 
     this.props.dispatch(updateCategories(category));
+    console.log(this.props.categories);
   }
 
   unpublishCategory = (id) => {
@@ -23,6 +24,7 @@ class Categories extends Component {
     category.published = false;
 
     this.props.dispatch(updateCategories(category));
+    console.log(this.props.categories);
   }
 
   publishCategory = (id) => {
@@ -30,11 +32,11 @@ class Categories extends Component {
     category.published = true;
 
     this.props.dispatch(updateCategories(category));
+    console.log(this.props.categories);
   }
 
   render() {
     const { categories, history, user } = this.props;
-
     return (
       <section>
         <h1 className="main-title">Categories</h1>

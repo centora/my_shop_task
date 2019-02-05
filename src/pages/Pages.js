@@ -6,7 +6,7 @@ import { UpdateUser } from './updateUser';
 import { Product } from './product';
 import { Products } from './products';
 import Categories from './categories';
-import { Category } from './category';
+import Category from './category';
 import Start from './start';
 
 export const Pages = ({
@@ -25,7 +25,7 @@ export const Pages = ({
       <Route
         path="/categories/:id"
         exact
-        render={({ match }) => <Category match={match} />}
+        component={Category}
         key="category"
       />
       {

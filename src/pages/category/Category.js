@@ -1,15 +1,13 @@
-import './category.scss';
+import { connect } from 'react-redux';
 import { getCategory } from '../../store/category';
+import { getProducts } from '../../store/products';
+import './category.scss';
 import { CategoriesItems } from 'components/categoriesItems';
 
-export class Category extends Component {
-  state = {
-    category: {}
-  }
-
+class Category extends Component {
   componentDidMount() {
-    getCategory(this.props.match.params.id)
-      .then(category => this.setState({ category }));
+    this.props.dispatch(getCategory(this.props.match.params.id));
+    this.props.dispatch(getProducts());
   }
 
   componentDidUpdate() {
@@ -21,12 +19,12 @@ export class Category extends Component {
   }
 
   render() {
-    const { category } = this.state;
-    const { products } = category;
+    const { category, history, products } = this.props;
+    console.log(this.props);
     console.log(category);
     return (
       <div>
-        <div className="">
+        {/*<div className="">
           <h1 className="main-title">Category {category.title}</h1>
           <ul className="cat-products-list">
             {
@@ -37,8 +35,15 @@ export class Category extends Component {
               ))
             }
           </ul>
-        </div>
+        </div>*/}
       </div>
     );
   }
 }
+
+const mapState = state => ({
+  category: state.category,
+  products: state.products
+})
+
+export default connect(mapState)(Category);

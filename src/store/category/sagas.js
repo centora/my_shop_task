@@ -5,22 +5,18 @@ import {
 } from 'redux-saga/effects';
 
 import {
-  getInfo,
   updateCategory as updateCategoryService,
   getCategory as getCategoryService,
   createCategory as createCategoryService,
-  deleteategory as deleteCategoryService,
+  deleteCategory as deleteCategoryService,
 } from 'services';
 
 import {
-  GET_INFO,
-  setInfo,
   GET_CATEGORY,
   UPDATE_CATEGORY,
   DELETE_CATEGORY,
   CREATE_NEW_CATEGORY,
   setCategory,
-  getCategory,
   clearCategory,
 } from './actions';
 
