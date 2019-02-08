@@ -1,7 +1,7 @@
 import ReactModal  from 'react-modal';
 import './modal.scss';
 
-//ReactModal.setAppElement('#app');
+ReactModal.setAppElement('#app');
 
 export const Modal = ({ isOpen, close, success, text}) => {
   const onOk = () => {

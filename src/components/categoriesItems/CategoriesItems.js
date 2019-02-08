@@ -10,7 +10,7 @@ export class CategoriesItems extends Component {
   }
 
   onDelete = (itemId) => {
-    this.setState({itemId});
+    this.setState({ itemId });
   }
 
   onClose = () => {
@@ -23,6 +23,8 @@ export class CategoriesItems extends Component {
   }
 
   onEdit = (editId) => {
+    const editableItem = this.props.publishedItems.find(item => item.id === editId);
+    editableItem.editable = true;
     this.setState({ editId });
   }
 
@@ -31,19 +33,10 @@ export class CategoriesItems extends Component {
     this.setState({ editId: '' });
   }
 
-  componentWillReceiveProps(nextProps){
-
-  }
-
   onChangeFilter = ({ target }) => {
     this.setState({
       filterValue: target.value
     });
-    this.filterCategories(target.value);
-  }
-
-  filterCategories = (value) => {
-    console.log(value);
   }
 
   render() {
@@ -53,20 +46,22 @@ export class CategoriesItems extends Component {
       addItem
     } = this.props;
     const { filterValue, itemId, editId } = this.state;
-
+    const filteredUnpublishedItems = unpublishedItems
+      .filter(item => item.title.toLowerCase().includes(filterValue.toLowerCase()));
     return (
       <div className="categories-items">
         <div className="categories-container">
           <h3>Published categories</h3>
           <ul className="categories-list">
             {
-              publishedItems.map(({ title, id }) => (
+              publishedItems.map(({ title, id, editable }) => (
                 <li key={id}>
                   <InputText
                     text={title}
                     onOut={title => this.onInputOut(title, id)}
                     active={id === editId}
-                    onClick={() => this.props.history.push(`/categories/$id`)}
+                    editable={editable}
+                    onClick={() => this.props.history.push(`/categories/${id}`)}
                   />
                   <span
                     style={{ marginLeft: '10px', color: 'red' }}
@@ -100,7 +95,7 @@ export class CategoriesItems extends Component {
             </div>
             <ul className="categories-list">
               {
-                unpublishedItems.map(({ title, id }) => (
+                filteredUnpublishedItems.map(({ title, id }) => (
                   <li
                     key={id}
                     onDoubleClick={() => addItem(id)}
