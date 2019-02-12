@@ -96,7 +96,7 @@ export class CategoriesItems extends Component {
               <input
                 type="text"
                 name="filter"
-                placeholder="Enter at list 2 chars"
+                placeholder="Filter..."
                 value={filterValue}
                 onChange={this.onChangeFilter}
               />

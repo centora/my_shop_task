@@ -38,6 +38,20 @@ class Category extends Component {
     const {
       category, history, products, user
     } = this.props;
+
+    let notAddedProducts = products;
+
+    if (category) {
+      notAddedProducts = products.filter((product) => {
+        const prod = category.products.find(item => item.id === product.id);
+
+        if (!category.products.includes(prod)) {
+          return product;
+        }
+        return null;
+      });
+    }
+
     return (
       <div>
         { category && (
@@ -46,7 +60,7 @@ class Category extends Component {
             { user ? (
               <CategoriesItems
                 publishedItems={category.products}
-                unpublishedItems={products}
+                unpublishedItems={notAddedProducts}
                 onChangeLeftItem={this.updateProducts}
                 removeItem={this.removeProductFromCategory}
                 addItem={this.addProductToCategory}
