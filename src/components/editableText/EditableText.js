@@ -2,22 +2,14 @@ import './editableText.scss';
 
 export class EditableText extends Component {
   state = {
-    editable: this.props.editable,
-    disabled: this.props.disabled,
     editValue: this.props.text ? this.props.text : ''
   }
 
   editText = () => {
-    this.setState({
-      editable: true
-    });
+
   }
 
   updateText = (fn) => {
-    this.setState({
-      editable: false
-    });
-
     if (typeof fn === 'function') {
       fn(this.state.editValue);
     }
@@ -31,18 +23,18 @@ export class EditableText extends Component {
 
   renderEditableControl() {
     const {
-      onUpdateFieldHandle,
+      onOut,
       width,
       multirow
     } = this.props;
     const { onChange, updateText } = this;
-    const { editValue, disabled } = this.state;
+    const { editValue } = this.state;
     const editableControl = !multirow ? (
       <input
         autoFocus
         type="text"
         onChange={onChange}
-        onBlur={() => updateText(onUpdateFieldHandle)}
+        onBlur={() => updateText(onOut)}
         value={editValue}
         style={{ width }}
         className="editable-control"
@@ -63,7 +55,8 @@ export class EditableText extends Component {
 
   render() {
     const { editText } = this;
-    const { editable, editValue } = this.state;
+    const { editValue } = this.state;
+    const { editable } = this.props;
     return (
       <div className="editable-box" onClick={editText}>
         {

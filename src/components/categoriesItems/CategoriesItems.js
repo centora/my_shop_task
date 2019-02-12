@@ -23,12 +23,13 @@ export class CategoriesItems extends Component {
   }
 
   onEdit = (editId) => {
-    const editableItem = this.props.publishedItems.find(item => item.id === editId);
-    editableItem.editable = true;
+    const activeItem = this.props.publishedItems.find(item => item.id === editId);
+    activeItem.editable = true;
     this.setState({ editId });
   }
 
   onInputOut(title, id) {
+    console.log(title, id);
     this.props.onChangeLeftItem(title, id);
     this.setState({ editId: '' });
   }

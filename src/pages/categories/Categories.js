@@ -16,7 +16,6 @@ class Categories extends Component {
     category.title = title;
 
     this.props.dispatch(updateCategories(category));
-    console.log(this.props.categories);
   }
 
   unpublishCategory = (id) => {
@@ -24,7 +23,6 @@ class Categories extends Component {
     category.published = false;
 
     this.props.dispatch(updateCategories(category));
-    console.log(this.props.categories);
   }
 
   publishCategory = (id) => {
@@ -32,12 +30,10 @@ class Categories extends Component {
     category.published = true;
 
     this.props.dispatch(updateCategories(category));
-    console.log(this.props.categories);
   }
 
   render() {
     const { categories, history, user } = this.props;
-    console.log(categories);
     return (
       <section>
         <h1 className="main-title">Categories</h1>
