@@ -83,3 +83,52 @@ button, .btn-submit {
     padding-bottom: 5px;
   }
 }
+
+.ReactModal__Overlay {
+  background: rgba(175, 175, 175, 0.68) !important;
+}
+
+.ReactModal__Content {
+  box-sizing: border-box;
+  width: 400px;
+  height: auto;
+  bottom: auto !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translate(-50%, -50%);
+  background: rgb(210, 152, 149) !important;
+  font-size: 20px;
+  border: 0 !important;
+  box-shadow: 0 0 8px 4px #ba342f;
+  h2 {
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 22px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 2px 0 4px;
+    &:hover {
+      background: #8c50506b;
+    }
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    button {
+      margin: 0 5px;
+      font-size: 16px;
+      min-width: 0;
+      height: 36px;
+      line-height: 24px;
+      padding: 0 15px;
+    }
+  }
+}

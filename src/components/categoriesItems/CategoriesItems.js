@@ -39,7 +39,7 @@ export class CategoriesItems extends Component {
 
   categoryClick = (id) => {
     if (!this.state.editId) {
-      this.props.history.push(`/categories/${id}`);
+      this.props.history.push(`${this.props.redirectLink}${id}`);
     }
   }
 

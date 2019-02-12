@@ -46,6 +46,7 @@ class Categories extends Component {
             addItem={this.publishCategory}
             history={history}
             isEditButton
+            redirectLink="/categories/"
           />
         ) : (
           <ul className="categories-list">

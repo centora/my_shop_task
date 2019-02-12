@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CategoriesItems } from 'components/categoriesItems';
 import { EditableText } from 'components/editableText';
-import { getCategory } from '../../store/category';
+import { getCategory, updateCategory } from '../../store/category';
 import { getProducts } from '../../store/products';
 import './category.scss';
 
@@ -23,11 +23,10 @@ class Category extends Component {
     //    console.log('update');
   }
 
-  addProductToCategory(id) {
-    /* const product = this.props.products.find(product => product.id === id);
-    category.published = true;
-
-    this.props.dispatch(updateCategories(category)); */
+  addProductToCategory = (id) => {
+    const product = this.props.products.find(product => product.id === id);
+    this.props.category.products.push(product);
+    this.props.dispatch(updateCategory(this.props.category));
   }
 
   removeProductFromCategory(id) {
@@ -42,14 +41,15 @@ class Category extends Component {
     let notAddedProducts = products;
 
     if (category) {
-      notAddedProducts = products.filter((product) => {
-        const prod = category.products.find(item => item.id === product.id);
-
-        if (!category.products.includes(prod)) {
-          return product;
-        }
-        return null;
-      });
+      if (category.products) {
+        notAddedProducts = products.filter((product) => {
+          const prod = category.products.find(item => item.id === product.id);
+          if (!category.products.includes(prod)) {
+            return product;
+          }
+          return null;
+        });
+      }
     }
 
     return (
@@ -61,12 +61,13 @@ class Category extends Component {
               <CategoriesItems
                 publishedItems={category.products}
                 unpublishedItems={notAddedProducts}
-                onChangeLeftItem={this.updateProducts}
+                onChangeLeftItem={this.updateProduct}
                 removeItem={this.removeProductFromCategory}
                 addItem={this.addProductToCategory}
                 history={history}
                 publishedTitle="Products added to category"
                 unpublishedTitle="Products"
+                redirectLink="/products/"
               />
             ) : (
               <ul className="cat-products-list">
