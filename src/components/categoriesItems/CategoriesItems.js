@@ -23,13 +23,10 @@ export class CategoriesItems extends Component {
   }
 
   onEdit = (editId) => {
-    const activeItem = this.props.publishedItems.find(item => item.id === editId);
-    activeItem.editable = true;
     this.setState({ editId });
   }
 
   onInputOut(title, id) {
-    console.log(title, id);
     this.props.onChangeLeftItem(title, id);
     this.setState({ editId: '' });
   }
@@ -40,11 +37,20 @@ export class CategoriesItems extends Component {
     });
   }
 
+  categoryClick = (id) => {
+    if (!this.state.editId) {
+      this.props.history.push(`/categories/${id}`);
+    }
+  }
+
   render() {
     const {
       publishedItems,
       unpublishedItems,
-      addItem
+      addItem,
+      publishedTitle = 'Published categories',
+      unpublishedTitle = 'Unpublished categories',
+      isEditButton = false
     } = this.props;
     const { filterValue, itemId, editId } = this.state;
     const filteredUnpublishedItems = unpublishedItems
@@ -52,17 +58,16 @@ export class CategoriesItems extends Component {
     return (
       <div className="categories-items">
         <div className="categories-container">
-          <h3>Published categories</h3>
+          <h3>{publishedTitle}</h3>
           <ul className="categories-list">
             {
-              publishedItems.map(({ title, id, editable }) => (
+              publishedItems && publishedItems.map(({ title, id }) => (
                 <li key={id}>
                   <InputText
                     text={title}
                     onOut={title => this.onInputOut(title, id)}
-                    active={id === editId}
-                    editable={editable}
-                    onClick={() => this.props.history.push(`/categories/${id}`)}
+                    editable={id === editId}
+                    onClickHandler={() => this.categoryClick(id)}
                   />
                   <span
                     style={{ marginLeft: '10px', color: 'red' }}
@@ -70,12 +75,14 @@ export class CategoriesItems extends Component {
                   >
                     X
                   </span>
-                  <span
-                    style={{ marginLeft: '10px', color: 'red' }}
-                    onClick={() => this.onEdit(id)}
-                  >
-                   V
-                  </span>
+                  { isEditButton && (
+                    <span
+                      style={{ marginLeft: '10px', color: 'red' }}
+                      onClick={() => this.onEdit(id)}
+                    >
+                     V
+                    </span>
+                  )}
                 </li>
               ))
             }
@@ -83,7 +90,7 @@ export class CategoriesItems extends Component {
         </div>
 
         <div className="categories-container">
-          <h3>Unpublished categories</h3>
+          <h3>{unpublishedTitle}</h3>
           <div className="unpublished-categories">
             <div className="filter-box">
               <input

@@ -2,14 +2,28 @@ import './editableText.scss';
 
 export class EditableText extends Component {
   state = {
+    editable: false,
     editValue: this.props.text ? this.props.text : ''
+  };
+
+  componentDidUpdate(previousProps) {
+    if (previousProps.editable !== this.props.editable) {
+      this.setState({
+        editable: this.props.editable
+      });
+    }
   }
 
   editText = () => {
-
+    this.setState({
+      editable: true
+    });
   }
 
   updateText = (fn) => {
+    this.setState({
+      editable: false
+    });
     if (typeof fn === 'function') {
       fn(this.state.editValue);
     }
@@ -44,7 +58,7 @@ export class EditableText extends Component {
         autoFocus
         type="text"
         onChange={onChange}
-        onBlur={() => updateText(onUpdateFieldHandle)}
+        onBlur={() => updateText(onOut)}
         value={editValue}
         style={{ width }}
         className="editable-control"
@@ -54,14 +68,13 @@ export class EditableText extends Component {
   }
 
   render() {
-    const { editText } = this;
-    const { editValue } = this.state;
-    const { editable } = this.props;
+    const { editValue, editable } = this.state;
+    const { onClickHandler = this.editText } = this.props;
     return (
-      <div className="editable-box" onClick={editText}>
+      <div className="editable-box">
         {
           !editable && editValue.length ? (
-            <div className="editable-text">{editValue}</div>
+            <div className="editable-text" onClick={onClickHandler}>{editValue}</div>
           ) : this.renderEditableControl()
         }
       </div>

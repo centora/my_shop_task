@@ -45,6 +45,7 @@ class Categories extends Component {
             removeItem={this.unpublishCategory}
             addItem={this.publishCategory}
             history={history}
+            isEditButton
           />
         ) : (
           <ul className="categories-list">
