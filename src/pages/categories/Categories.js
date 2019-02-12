@@ -37,6 +37,7 @@ class Categories extends Component {
 
   render() {
     const { categories, history, user } = this.props;
+    console.log(categories);
     return (
       <section>
         <h1 className="main-title">Categories</h1>

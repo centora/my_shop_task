@@ -50,3 +50,35 @@ button, .btn-submit {
   font-size: inherit;
 
 }
+
+.logo {
+  display: inline-block;
+  width: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  img {
+    max-width: 100%;
+  }
+}
+
+.navigation,
+.user-box {
+  a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #38455f;
+    &.active {
+      color: #e9e5f4;
+    }
+  }
+}
+
+.categories-list,
+.cat-products-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    margin-bottom: 10px;
+  }
+}
