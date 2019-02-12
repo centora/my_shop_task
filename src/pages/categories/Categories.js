@@ -21,14 +21,12 @@ class Categories extends Component {
   unpublishCategory = (id) => {
     const category = this.props.categories.find(category => category.id === id);
     category.published = false;
-
     this.props.dispatch(updateCategories(category));
   }
 
   publishCategory = (id) => {
     const category = this.props.categories.find(category => category.id === id);
     category.published = true;
-
     this.props.dispatch(updateCategories(category));
   }
 

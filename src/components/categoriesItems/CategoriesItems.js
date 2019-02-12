@@ -7,18 +7,21 @@ export class CategoriesItems extends Component {
     filterValue: '',
     itemId: '',
     editId: '',
+    modalIsOpen: false
   }
 
   onDelete = (itemId) => {
+    this.setState({ modalIsOpen: true });
     this.setState({ itemId });
   }
 
   onClose = () => {
-    this.props.removeItem(this.state.itemId);
+    this.setState({ modalIsOpen: false });
+    //this.props.removeItem(this.state.itemId);
   }
 
   onOk = () => {
-    console.log('removing...', this.state.itemId);
+    this.setState({ modalIsOpen: false });
     this.props.removeItem(this.state.itemId);
   }
 
@@ -52,7 +55,7 @@ export class CategoriesItems extends Component {
       unpublishedTitle = 'Unpublished categories',
       isEditButton = false
     } = this.props;
-    const { filterValue, itemId, editId } = this.state;
+    const { filterValue, itemId, editId, modalIsOpen } = this.state;
     const filteredUnpublishedItems = unpublishedItems
       .filter(item => item.title.toLowerCase().includes(filterValue.toLowerCase()));
     return (
@@ -116,7 +119,7 @@ export class CategoriesItems extends Component {
           </div>
         </div>
         <Modal
-          isOpen={Boolean(itemId)}
+          isOpen={modalIsOpen}
           close={this.onClose}
           success={this.onOk}
           text="You are going to unpublish category"

@@ -118,10 +118,11 @@ button, .btn-submit {
       background: #8c50506b;
     }
   }
+
   .button-container {
     display: flex;
     justify-content: flex-end;
-    margin-top: 40px;
+    margin: 40px -5px 0;
     button {
       margin: 0 5px;
       font-size: 16px;
