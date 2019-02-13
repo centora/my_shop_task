@@ -72,7 +72,7 @@ class Category extends Component {
             ) : (
               <ul className="cat-products-list">
                 {
-                  products && products.map(item => (
+                  category.products && category.products.map(item => (
                     <li key={item.id}>
                       <Link to={`/products/${item.id}`}>{item.title}</Link>
                     </li>

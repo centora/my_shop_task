@@ -46,7 +46,7 @@ export class AppComponent extends Component {
   }
 
   render() {
-    const { user, info, products } = this.props;
+    const { user, info } = this.props;
     return (
       <>
         <Header
@@ -58,7 +58,6 @@ export class AppComponent extends Component {
           <Pages
             user={user}
             info={info}
-            products={products}
           />
         </Main>
         <Footer />

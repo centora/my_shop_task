@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCategories, updateCategories } from '../../store/categories';
 import { CategoriesItems } from 'components/categoriesItems';
+import { getCategories, updateCategories } from '../../store/categories';
 
 const isPublished = category => category.published;
 const notPublished = category => !category.published;

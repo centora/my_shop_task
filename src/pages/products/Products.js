@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { getProducts, updateProduct } from 'services';
+import { updateProduct } from 'services';
 import './products.scss';
 import connect from 'react-redux/es/connect/connect';
+import { getProducts } from '../../store/products';
 
 class Products extends Component {
   state = {
@@ -9,12 +10,7 @@ class Products extends Component {
   }
 
   componentDidMount() {
-
-    getProducts()
-      .then((products) => {
-        this.originProducts = products;
-        this.setState({ products });
-      });
+    this.props.dispatch(getProducts());
   }
 
   deleteProduct = (e, id) => {
